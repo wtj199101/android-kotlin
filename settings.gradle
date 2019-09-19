@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':lithops'
 rootProject.name='My Application'
