@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <!-- MainActivity -->
+    <string name="app_name">个人小助手</string>
+    <string name="default_psd">123456</string>
+    <string name="author">版权所有wtj</string>
+    <string name="ok">确定</string>
+    <string name="pleaseInputPsd">请输入密钥</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">主页</string>
+    <string name="title_dashboard">面板</string>
+    <string name="title_notifications">通知</string>
 </resources>
