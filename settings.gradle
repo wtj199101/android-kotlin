@@ -1,2 +1,2 @@
-include ':app', ':lithops'
+include  ':lithops', ':kotlinStudy'
 rootProject.name='My Application'
