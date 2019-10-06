@@ -2,4 +2,5 @@
     <string name="app_name">kotlinStudy</string>
     <string name="hello">hello,world</string>
     <string name="button">点击</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
