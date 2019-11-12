@@ -34,3 +34,7 @@ dependencies {
     implementation "org.jetbrains.anko:anko-common:$anko_version"
     testImplementation 'junit:junit:4.12'
 }
+//@Parcelize标记和LayoutContainer需要设置experimental = true
+androidExtensions {
+    experimental = true
+}
