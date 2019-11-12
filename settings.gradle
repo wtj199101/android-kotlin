@@ -1,2 +1,1 @@
-include  ':lithops', ':kotlinStudy'
-rootProject.name='My Application'
+include ':hello', ':grammar', ':simple', ':complex', ':storage', ':custom', ':network', ':complextest'
