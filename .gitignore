@@ -9,3 +9,6 @@
 .externalNativeBuild
 .idea
 /.idea/gradle.xml
+/wrapper
+/gradle/wrapper
+gradle
