@@ -28,7 +28,7 @@ class PlanetListAdapter(private val context: Context, private val planetList: Mu
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var view = convertView
-        val holder: ViewHolder
+        var holder: ViewHolder
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.item_list_view, null)
             holder = ViewHolder()

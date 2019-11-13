@@ -9,7 +9,6 @@ import org.jetbrains.anko.selector
 import org.jetbrains.anko.toast
 
 class SpinnerDialogActivity : AppCompatActivity() {
-
     private val satellites= listOf("水星", "金星", "地球", "火星", "木星", "土星");
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +22,5 @@ class SpinnerDialogActivity : AppCompatActivity() {
                 toast("你选择的行星是${tv_spanner.text}")
             }
         }
-
-
     }
 }
