@@ -47,6 +47,32 @@
                      android:layout_weight="1"
                      android:text="网格视图" />
              </LinearLayout>
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:orientation="horizontal">
+
+                 <Button
+                     android:id="@+id/btn_recycler_linear"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:text="线性循环视图" />
+
+                 <Button
+                     android:id="@+id/btn_recycler_grid"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:text="网格循环视图" />
+
+                 <Button
+                     android:id="@+id/btn_recycler_staggered"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:text="瀑布流循环视图" />
+             </LinearLayout>
 
          </LinearLayout>
 

@@ -18,6 +18,7 @@
         <activity android:name=".activity.SpinnerDialogActivity" />
         <activity android:name=".activity.ListViewActivity" />
         <activity android:name=".activity.GridViewActivity" />
+        <activity android:name=".activity.RecyclerLinearActivity" />
     </application>
 
 </manifest>
