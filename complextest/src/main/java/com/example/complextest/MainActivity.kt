@@ -2,6 +2,7 @@ package com.example.complextest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.complextest.activity.GridViewActivity
 import com.example.complextest.activity.ListViewActivity
 import com.example.complextest.activity.SpinnerDialogActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -14,5 +15,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         btn_spinner_dialog.setOnClickListener { startActivity<SpinnerDialogActivity>() }
         btn_list_view.setOnClickListener { startActivity<ListViewActivity>() }
+        btn_grid_view.setOnClickListener { startActivity<GridViewActivity>() }
     }
 }
