@@ -18,7 +18,10 @@
         <activity android:name=".activity.SpinnerDialogActivity" />
         <activity android:name=".activity.ListViewActivity" />
         <activity android:name=".activity.GridViewActivity" />
+
         <activity android:name=".activity.RecyclerLinearActivity" />
+        <activity android:name=".activity.RecyclerGridActivity" />
+        <activity android:name=".activity.RecyclerStaggeredActivity" />
     </application>
 
 </manifest>

@@ -23,7 +23,7 @@ class RecyclerGridAdapter(context: Context, private val infos: MutableList<Recyc
     override fun getItemCount(): Int = infos.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view: View = inflater.inflate(R.layout.item_recycler_grid, parent, false)
+        val view: View = inflater.inflate(R.layout.itemre, parent, false)
         return ItemHolder(view)
     }
 

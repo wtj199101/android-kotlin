@@ -10,10 +10,10 @@ import com.example.complextest.R
 import com.example.complextest.model.RecyclerInfo
 import org.jetbrains.anko.toast
 
-class RecyclerLinearAdapter(private val context: Context, private val infos:MutableList<RecyclerInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), RecyclerExtras.OnItemClickListener, RecyclerExtras.OnItemLongClickListener {
+class RecyclerGridAdapter(private val context: Context, private val infos:MutableList<RecyclerInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), RecyclerExtras.OnItemClickListener, RecyclerExtras.OnItemLongClickListener {
     val inflater: LayoutInflater= LayoutInflater.from(context)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = inflater.inflate(R.layout.item_recycler_linear, parent, false)
+        val view = inflater.inflate(R.layout.item_recycle_gird, parent, false)
         return ItemHolder(view)
     }
 
@@ -22,8 +22,7 @@ class RecyclerLinearAdapter(private val context: Context, private val infos:Muta
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val ih = holder as ItemHolder
         ih.iv_pic.setImageResource(infos[position].pic_id)
-        ih.tv_title.text = infos[position].title
-        ih.tv_desc.text = infos[position].desc
+        ih.tv_title.text=infos[position].title
         ih.ll_item.setOnClickListener {  v->
             itemClickListener?.onItemClick(v,position)
         }
