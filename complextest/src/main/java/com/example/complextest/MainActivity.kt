@@ -18,11 +18,11 @@ class MainActivity : AppCompatActivity() {
         btn_recycler_linear.setOnClickListener { startActivity<RecyclerLinearActivity>() }
         btn_recycler_grid.setOnClickListener { startActivity<RecyclerGridActivity>() }
         btn_recycler_staggered.setOnClickListener { startActivity<RecyclerStaggeredActivity>() }
-//        btn_coordinator.setOnClickListener { startActivity<CoordinatorActivity>() }
-//        btn_tool_bar.setOnClickListener { startActivity<ToolbarActivity>() }
-//        btn_appbar_recycler.setOnClickListener { startActivity<AppbarRecyclerActivity>() }
-//        btn_appbar_nested.setOnClickListener { startActivity<AppbarNestedActivity>() }
-//        btn_collapse_pin.setOnClickListener { startActivity<CollapsePinActivity>() }
+        btn_coordinator.setOnClickListener { startActivity<CoordinatorActivity>() }
+        btn_tool_bar.setOnClickListener { startActivity<ToolbarActivity>() }
+        btn_appbar_recycler.setOnClickListener { startActivity<AppbarRecyclerActivity>() }
+        btn_appbar_nested.setOnClickListener { startActivity<AppbarNestedActivity>() }
+        btn_collapse_pin.setOnClickListener { startActivity<CollapsePinActivity>() }
 //        btn_collapse_parallax.setOnClickListener { startActivity<CollapseParallaxActivity>() }
 //        btn_image_fade.setOnClickListener { startActivity<ImageFadeActivity>() }
 //        btn_scroll_flag.setOnClickListener { startActivity<ScrollFlagActivity>() }

@@ -16,17 +16,6 @@ class RecyclerCommonAdapter<T>(context: Context, private val layoutId: Int, priv
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val ih = holder as ItemHolder<T>
         ih.bind(items.get(position))
-//        ih.iv_pic.setImageResource(infos[position].pic_id)
-//        ih.tv_title.text = infos[position].title
-//        ih.tv_desc.text = infos[position].desc
-//        ih.ll_item.setOnClickListener {  v->
-//            itemClickListener?.onItemClick(v,position)
-//        }
-//        ih.ll_item.setOnLongClickListener {  v->
-//            itemLongClickListener?.onItemLongClick(v,position)
-//                true
-//        }
-
     }
 
 

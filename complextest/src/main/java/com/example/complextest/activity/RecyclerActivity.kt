@@ -58,9 +58,12 @@ class RecyclerStaggeredActivity : AppCompatActivity(){
         val adapter=RecyclerCommonAdapter(this,R.layout.item_recycler_stagger,RecyclerInfo.defaultStag,{view: View, recyclerInfo: RecyclerInfo ->
             val iv_pic=view.findViewById<ImageView>(R.id.iv_pic)
             val tv_title=view.findViewById<TextView>(R.id.tv_title)
-
-
+            iv_pic.setImageResource(recyclerInfo.pic_id)
+            tv_title.text=recyclerInfo.title
         })
+        rv_stagger.adapter=adapter
+        rv_stagger.itemAnimator=DefaultItemAnimator()
+        rv_stagger.addItemDecoration(SpacesItemDecoration(1))
 
 
 
