@@ -34,6 +34,10 @@
         <activity android:name=".activity.ImageFadeActivity" />
         <activity android:name=".activity.ScrollFlagActivity" />
         <activity android:name=".activity.ScrollAlipayActivity" />
+
+        <activity android:name=".activity.ViewPagerActivity" />
+        <activity android:name=".activity.FragmentDynamicActivity" />
+        <activity android:name=".activity.TabLayoutActivity" />
     </application>
 
 </manifest>

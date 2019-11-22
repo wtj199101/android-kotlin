@@ -162,10 +162,41 @@
                          android:id="@+id/btn_scroll_alipay"
                          />
                  </LinearLayout>
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="20dp"
+                     android:gravity="center"
+                     android:text="7.3 页面切换" />
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal">
+                     <Button
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:layout_weight="1"
+                         android:text="翻页视图"
+                         android:id="@+id/btn_view_pager"
+                         />
+                     <Button
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:layout_weight="1"
+                         android:text="动态碎片"
+                         android:id="@+id/btn_fragment_dynamic"
+                         />
+                     <Button
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:layout_weight="1"
+                         android:text="标签布局"
+                         android:id="@+id/btn_tab_layout"
+                         />
+                 </LinearLayout>
              </LinearLayout>
-
          </LinearLayout>
-
      </ScrollView>
 </LinearLayout>
 
