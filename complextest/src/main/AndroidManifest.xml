@@ -22,11 +22,17 @@
         <activity android:name=".activity.RecyclerLinearActivity" />
         <activity android:name=".activity.RecyclerGridActivity" />
         <activity android:name=".activity.RecyclerStaggeredActivity" />
+
         <activity android:name=".activity.CoordinatorActivity" />
         <activity android:name=".activity.ToolbarActivity" />
+
         <activity android:name=".activity.AppbarRecyclerActivity" />
         <activity android:name=".activity.AppbarNestedActivity" />
         <activity android:name=".activity.CollapsePinActivity" />
+
+        <activity android:name=".activity.CollapseParallaxActivity" />
+        <activity android:name=".activity.ImageFadeActivity" />
+        <activity android:name=".activity.ScrollFlagActivity" />
     </application>
 
 </manifest>

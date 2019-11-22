@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity() {
         btn_appbar_recycler.setOnClickListener { startActivity<AppbarRecyclerActivity>() }
         btn_appbar_nested.setOnClickListener { startActivity<AppbarNestedActivity>() }
         btn_collapse_pin.setOnClickListener { startActivity<CollapsePinActivity>() }
-//        btn_collapse_parallax.setOnClickListener { startActivity<CollapseParallaxActivity>() }
-//        btn_image_fade.setOnClickListener { startActivity<ImageFadeActivity>() }
-//        btn_scroll_flag.setOnClickListener { startActivity<ScrollFlagActivity>() }
+        btn_collapse_parallax.setOnClickListener { startActivity<CollapseParallaxActivity>() }
+        btn_image_fade.setOnClickListener { startActivity<ImageFadeActivity>() }
+        btn_scroll_flag.setOnClickListener { startActivity<ScrollFlagActivity>() }
 //        btn_scroll_alipay.setOnClickListener { startActivity<ScrollAlipayActivity>() }
 //        btn_view_pager.setOnClickListener { startActivity<ViewPagerActivity>() }
 //        btn_fragment_dynamic.setOnClickListener { startActivity<FragmentDynamicActivity>() }
