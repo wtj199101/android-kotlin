@@ -38,6 +38,9 @@
         <activity android:name=".activity.ViewPagerActivity" />
         <activity android:name=".activity.FragmentDynamicActivity" />
         <activity android:name=".activity.TabLayoutActivity" />
+
+        <activity android:name=".activity.BroadTempActivity" />
+        <activity android:name=".activity.BroadSystemActivity" />
     </application>
 
 </manifest>

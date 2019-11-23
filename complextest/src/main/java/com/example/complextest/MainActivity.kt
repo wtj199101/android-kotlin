@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         btn_view_pager.setOnClickListener { startActivity<ViewPagerActivity>() }
         btn_fragment_dynamic.setOnClickListener { startActivity<FragmentDynamicActivity>() }
         btn_tab_layout.setOnClickListener { startActivity<TabLayoutActivity>() }
-//        btn_broad_temp.setOnClickListener { startActivity<BroadTempActivity>() }
-//        btn_broad_system.setOnClickListener { startActivity<BroadSystemActivity>() }
+        btn_broad_temp.setOnClickListener { startActivity<BroadTempActivity>() }
+        btn_broad_system.setOnClickListener { startActivity<BroadSystemActivity>() }
 //        btn_swipe_recycler.setOnClickListener { startActivity<SwipeRecyclerActivity>() }
 //        btn_department_channel.setOnClickListener { startActivity<DepartmentChannelActivity>() }
 
