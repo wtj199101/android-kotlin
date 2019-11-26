@@ -6,12 +6,15 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
 import com.example.complextest.R
 import com.example.complextest.adapter.MobilePagerAdapter
 import com.example.complextest.fragment.BroadcastFragment
 import com.example.complextest.model.GoodsInfo
+import com.example.complextest.utils.DateUtil
+import kotlinx.android.synthetic.main.activity_broadcast_system.*
 import kotlinx.android.synthetic.main.activity_broadcast_temp.*
 
 class BroadTempActivity :AppCompatActivity(){
@@ -29,8 +32,8 @@ class BroadTempActivity :AppCompatActivity(){
         registerReceiver(bgChangeReceiver,filter)
     }
     override fun onStop() {
-        super.onStop()
         unregisterReceiver(bgChangeReceiver)
+        super.onStop()
     }
     private var bgChangeReceiver: BgChangeReceiver?=null
 
@@ -41,14 +44,39 @@ class BroadTempActivity :AppCompatActivity(){
                 ll_broad.setBackgroundColor(color)
             }
         }
+    }
+}
 
+
+class BroadSystemActivity :AppCompatActivity(){
+    var desc = "开始侦听分钟广播，请稍等。注意要保持屏幕亮着，才能正常收到广播"
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_broadcast_system)
+        tv_system.text=desc
     }
 
 
-}
+    override fun onStart() {
+        super.onStart()
+        timeReceiver=TimeReceiver()
+        val intentFilter=IntentFilter(Intent.ACTION_TIME_TICK)
+        registerReceiver(timeReceiver,intentFilter)
+    }
 
-class BroadSystemActivity :AppCompatActivity(){
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onStop() {
+        unregisterReceiver(timeReceiver)
+        super.onStop()
+    }
+
+    private var timeReceiver: TimeReceiver? = null
+    inner class TimeReceiver:BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+             if(intent!=null){
+                 desc="$desc\n${DateUtil.nowTime} 收到一个${intent.action}广播"
+                 tv_system.text=desc
+             }
+        }
+
     }
 }
