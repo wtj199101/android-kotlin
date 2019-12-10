@@ -12,10 +12,18 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".acitivity.ShareWriteActivity" />
+        <activity android:name=".acitivity.ShareReadActivity" />
+        <activity android:name=".acitivity.LoginShareActivity" />
+
+        <activity android:name=".acitivity.SQLiteWriteActivity" />
+        <activity android:name=".acitivity.SQLiteReadActivity" />
+        <activity android:name=".acitivity.LoginSQLiteActivity" />
+
+
     </application>
 
 </manifest>

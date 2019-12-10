@@ -1,38 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    android:padding="5dp" >
-
+    android:padding="5dp">
     <RadioGroup
-        android:id="@+id/rg_login"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:orientation="horizontal" >
-
+        android:id="@+id/rg_login"
+        android:orientation="horizontal">
         <RadioButton
-            android:id="@+id/rb_password"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:checked="true"
+            android:id="@+id/rb_password"
             android:gravity="left|center"
             android:text="密码登录"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
-
+            android:textSize="17sp"
+            android:textColor="@color/black"/>
         <RadioButton
             android:id="@+id/rb_verifycode"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:checked="false"
-            android:gravity="left|center"
+            android:checked="false" android:gravity="left|center"
             android:text="验证码登录"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:textColor="@color/black"/>
     </RadioGroup>
 
     <RelativeLayout
@@ -48,28 +45,24 @@
             android:text="手机号码："
             android:textColor="@color/black"
             android:textSize="17sp" />
-
         <EditText
-        android:id="@+id/et_phone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/tv_phone"
-        android:background="@drawable/editext_selector"
-        android:gravity="left|center"
-        android:hint="请输入手机号码"
-        android:inputType="number"
-        android:maxLength="11"
-        android:textColor="@color/black"
-        android:textColorHint="@color/grey"
-        android:textSize="17sp" />
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/tv_phone"
+            android:gravity="left|center"
+            android:hint="请输入手机号码"
+            android:inputType="number"
+            android:maxLength="11"
+            android:textColor="@color/black"
+            android:textColorHint="@color/grey"
+            android:textSize="17sp" />
     </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp" >
-
         <TextView
             android:id="@+id/tv_password"
             android:layout_width="wrap_content"
@@ -79,7 +72,6 @@
             android:text="登录密码："
             android:textColor="@color/black"
             android:textSize="17sp" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -91,7 +83,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/editext_selector"
                 android:gravity="left|center"
                 android:hint="请输入密码"
                 android:inputType="numberPassword"
@@ -129,5 +120,4 @@
         android:text="登录"
         android:textColor="@color/black"
         android:textSize="22sp" />
-
 </LinearLayout>
