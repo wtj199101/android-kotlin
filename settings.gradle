@@ -1,1 +1,2 @@
-include ':hello', ':grammar', ':simple', ':complex', ':storage', ':custom', ':network', ':complextest', ':storage-test'
+include ':app'
+rootProject.name='android_study_test'
