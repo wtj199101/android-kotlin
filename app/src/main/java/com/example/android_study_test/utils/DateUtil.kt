@@ -1,13 +1,12 @@
 package com.example.storage.util
 
-import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
 /**
  * Created by ouyangshen on 2016/9/24.
  */
-@SuppressLint("SimpleDateFormat")
+//@SuppressLint("SimpleDateFormat")
 object DateUtil {
 
     val nowDateTime: String
