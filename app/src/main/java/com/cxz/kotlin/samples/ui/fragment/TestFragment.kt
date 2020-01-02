@@ -1,6 +1,5 @@
 package com.cxz.kotlin.samples.ui.fragment
 
-import com.cxz.kotlin.baselibs.base.BaseMvpFragment
 import com.cxz.kotlin.samples.R
 import com.cxz.kotlin.samples.mvp.contract.TestContract
 import com.cxz.kotlin.samples.mvp.presenter.TestPresenter

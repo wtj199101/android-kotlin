@@ -6,6 +6,7 @@ package com.cxz.kotlin.baselibs.bean
  * @desc
  */
 open class BaseBean {
-    var errorCode: Int = 0
-    var errorMsg: String = ""
+    var code: Int = 0
+    var msg: String = ""
+    var data: Any? = null
 }

@@ -3,15 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion buildSdk.compileSdkVersion
     defaultConfig {
-        applicationId "com.cxz.kotlin.samples"
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        minSdkVersion  buildSdk.minSdkVersion
+        targetSdkVersion  buildSdk.targetSdkVersion
+        versionCode buildSdk.versionCode
+        versionName  buildSdk.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
         multiDexEnabled true
 
     }
@@ -36,17 +34,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation rootProject.ext.testDeps["junit"]
-    androidTestImplementation rootProject.ext.testDeps["runner"]
-    androidTestImplementation rootProject.ext.testDeps["espresso-core"]
-
-    // leakCanary
-    debugImplementation rootProject.ext.testDeps["leakcanary-debug"]
-    releaseImplementation rootProject.ext.testDeps["leakcanary-release"]
-
     implementation project(':baselibs')
-//    implementation 'com.cxz:kotlin-mvp:1.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin_version"
     // qmui
-    implementation 'com.qmuiteam:qmui:1.2.0'
+//    implementation 'com.qmuiteam:qmui:1.2.0'
 }

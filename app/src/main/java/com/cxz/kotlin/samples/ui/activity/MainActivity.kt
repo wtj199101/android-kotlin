@@ -3,8 +3,6 @@ package com.cxz.kotlin.samples.ui.activity
 import android.text.TextUtils
 import android.view.View
 import com.bumptech.glide.Glide
-import com.cxz.kotlin.baselibs.base.BaseMvpTitleActivity
-import com.cxz.kotlin.baselibs.ext.setSingleClickListener
 import com.cxz.kotlin.samples.R
 import com.cxz.kotlin.samples.bean.Banner
 import com.cxz.kotlin.samples.bean.CollectionArticle
@@ -13,7 +11,6 @@ import com.cxz.kotlin.samples.mvp.contract.MainContract
 import com.cxz.kotlin.samples.mvp.presenter.MainPresenter
 import com.cxz.kotlin.samples.utils.DialogUtil
 import com.cxz.kotlin.samples.utils.PermissionHelper
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseMvpTitleActivity<MainContract.View, MainContract.Presenter>(),
     MainContract.View {

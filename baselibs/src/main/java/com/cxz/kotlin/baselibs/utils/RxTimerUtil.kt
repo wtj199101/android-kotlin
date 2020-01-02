@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit
 object RxTimerUtil {
 
     private var mDisposable: Disposable? = null
-
     /**
      * 延迟 milliseconds 毫秒后执行 task
      */
@@ -47,6 +46,5 @@ object RxTimerUtil {
             }
         }
     }
-
 
 }

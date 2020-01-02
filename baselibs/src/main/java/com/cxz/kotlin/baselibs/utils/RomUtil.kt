@@ -91,7 +91,6 @@ object RomUtil {
                     input!!.close()
                 } catch (e: IOException) {
                 }
-
             }
         }
         return line

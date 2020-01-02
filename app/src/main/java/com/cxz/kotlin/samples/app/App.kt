@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.support.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
 import com.cxz.kotlin.baselibs.config.AppConfig
-import com.cxz.kotlin.baselibs.utils.NLog
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 

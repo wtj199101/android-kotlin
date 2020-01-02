@@ -2,7 +2,7 @@ package com.cxz.kotlin.samples.mvp.presenter
 
 import com.cxz.kotlin.baselibs.ext.ss
 import com.cxz.kotlin.baselibs.ext.sss
-import com.cxz.kotlin.baselibs.http.HttpStatus
+import com.cxz.kotlin.baselibs.http.constant.HttpStatus
 import com.cxz.kotlin.baselibs.http.exception.ExceptionHandle
 import com.cxz.kotlin.baselibs.mvp.BasePresenter
 import com.cxz.kotlin.baselibs.rx.SchedulerUtils

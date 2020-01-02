@@ -1,6 +1,5 @@
 package com.cxz.kotlin.samples.http
 
-import com.cxz.kotlin.baselibs.http.RetrofitFactory
 import com.cxz.kotlin.samples.constant.Constant
 
 /**

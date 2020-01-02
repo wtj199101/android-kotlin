@@ -7,8 +7,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 
 /**
- * @author chenxz
- * @date 2018/11/19
  * @desc KeyBoardUtil
  */
 object KeyBoardUtil {

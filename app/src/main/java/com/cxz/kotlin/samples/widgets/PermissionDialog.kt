@@ -6,7 +6,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.view.*
-import com.cxz.kotlin.baselibs.widget.OnNoDoubleClickListener
 import com.cxz.kotlin.samples.R
 import kotlinx.android.synthetic.main.dialog_permission.view.*
 

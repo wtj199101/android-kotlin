@@ -1,6 +1,6 @@
 package com.cxz.kotlin.baselibs.utils
 
-import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -8,7 +8,6 @@ import android.net.NetworkInfo
 import android.net.wifi.WifiManager
 import android.provider.Settings
 import android.telephony.TelephonyManager
-import com.cxz.kotlin.baselibs.config.AppConfig
 import java.net.NetworkInterface
 import java.net.SocketException
 
@@ -55,7 +54,6 @@ object NetWorkUtil {
      *
      * @return NetworkInfo
      */
-    @SuppressLint("MissingPermission")
     private fun getActiveNetworkInfo(context: Context): NetworkInfo? {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         return cm.activeNetworkInfo
@@ -69,22 +67,11 @@ object NetWorkUtil {
      *
      * @return `true`: 是 `false`: 否
      */
-    fun isConnected(): Boolean {
-        return isConnected(AppConfig.getApplication())
-    }
-
-    /**
-     * 判断网络是否连接
-     *
-     * 需添加权限
-     * `<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>`
-     *
-     * @return `true`: 是 `false`: 否
-     */
-    fun isConnected(context: Context): Boolean {
-        val info = getActiveNetworkInfo(context)
+    fun isConnected( application: Application): Boolean {
+        val info = getActiveNetworkInfo(application)
         return info != null && info.isConnected
     }
+
 
     /**
      * 打开或关闭移动数据

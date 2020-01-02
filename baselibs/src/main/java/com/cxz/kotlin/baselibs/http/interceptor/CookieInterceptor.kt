@@ -15,8 +15,8 @@ class CookieInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val response = chain.proceed(request)
-        val requestUrl = request.url().toString()
-        val domain = request.url().host()
+        val requestUrl = request.url.toString()
+        val domain = request.url.host
 
         // set-cookie maybe has multi, login to save cookie
         if (
@@ -55,14 +55,14 @@ class CookieInterceptor : Interceptor {
     }
 
     private fun saveCookie(url: String?, domain: String?, cookies: String) {
-        url ?: return
-        var spUrl: String by Preference(url, cookies)
-        @Suppress("UNUSED_VALUE")
-        spUrl = cookies
-        domain ?: return
-        var spDomain: String by Preference(domain, cookies)
-        @Suppress("UNUSED_VALUE")
-        spDomain = cookies
+//        url ?: return
+//        var spUrl: String by Preference(url, cookies)
+//        @Suppress("UNUSED_VALUE")
+//        spUrl = cookies
+//        domain ?: return
+//        var spDomain: String by Preference(domain, cookies)
+//        @Suppress("UNUSED_VALUE")
+//        spDomain = cookies
     }
 
 }

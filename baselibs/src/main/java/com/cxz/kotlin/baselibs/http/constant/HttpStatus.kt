@@ -1,4 +1,4 @@
-package com.cxz.kotlin.baselibs.http
+package com.cxz.kotlin.baselibs.http.constant
 
 /**
  * Created by chenxz on 2018/4/21.
@@ -7,7 +7,7 @@ object HttpStatus {
     /**
      * 响应成功
      */
-    const val SUCCESS = 0
+    const val SUCCESS = 200
 
     /**
      * Token 过期
@@ -22,7 +22,7 @@ object HttpStatus {
     /**
      * 服务器内部错误
      */
-    const val SERVER_ERROR = 1003
+    const val SERVER_ERROR = 500
 
     /**
      * 网络连接超时
