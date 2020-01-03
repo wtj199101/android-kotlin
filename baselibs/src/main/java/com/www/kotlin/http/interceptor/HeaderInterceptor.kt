@@ -10,18 +10,16 @@ import okhttp3.Response
  * @date 2018/9/26
  * @desc HeaderInterceptor: 设置请求头
  */
-//class HeaderInterceptor : Interceptor {
-//    override fun intercept(chain: Interceptor.Chain): Response {
-//
-//    }
+class HeaderInterceptor : Interceptor {
+
 
 
 //    private var token: String by Preference(HttpConstant.TOKEN_KEY, "")
 //
-//    override fun intercept(chain: Interceptor.Chain): Response {
+    override fun intercept(chain: Interceptor.Chain): Response {
 //
-//        val request = chain.request()
-//        val builder = request.newBuilder()
+        val request = chain.request()
+        val builder = request.newBuilder()
 //
 //        builder.addHeader("Content-type", "application/json; charset=utf-8")
 //        // .header("token", token)
@@ -37,7 +35,7 @@ import okhttp3.Response
 //                builder.addHeader(HttpConstant.COOKIE_NAME, cookie)
 //            }
 //        }
-//        return chain.proceed(builder.build())
-//    }
+        return chain.proceed(builder.build())
+    }
 
-//}
+}

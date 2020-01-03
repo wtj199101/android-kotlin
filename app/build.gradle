@@ -11,18 +11,14 @@ android {
         versionName  buildSdk.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-
     }
     buildTypes {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-
         release {
             minifyEnabled false
-            // shrinkResources true
-            // zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -38,4 +34,21 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin_version"
     // qmui
 //    implementation 'com.qmuiteam:qmui:1.2.0'
+
+    implementation deps.support.core_ktx
+
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.gsonConverter
+    implementation deps.retrofit.okhttp3Interceptor
+    implementation deps.retrofit.livedataAdapter
+
+
+
+    implementation deps.room.runtime
+    implementation deps.room.compiler
+
+}
+//@Parcelize标记和LayoutContainer需要设置experimental = true
+androidExtensions {
+    experimental = true
 }

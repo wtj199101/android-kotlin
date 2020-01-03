@@ -38,8 +38,9 @@ dependencies {
     implementation deps.support.app_compat
 
     implementation deps.retrofit.retrofit
-    implementation deps.retrofit.converter
-    implementation deps.retrofit.okhttp3
+    implementation deps.retrofit.gsonConverter
+    implementation deps.retrofit.okhttp3Interceptor
+    implementation deps.retrofit.livedataAdapter
 
     implementation deps.picture.glide
 
