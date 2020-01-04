@@ -1,16 +1,17 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion buildSdk.compileSdkVersion
     defaultConfig {
-        minSdkVersion  buildSdk.minSdkVersion
-        targetSdkVersion  buildSdk.targetSdkVersion
+        minSdkVersion buildSdk.minSdkVersion
+        targetSdkVersion buildSdk.targetSdkVersion
         versionCode buildSdk.versionCode
-        versionName  buildSdk.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName buildSdk.versionName
         multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
@@ -31,11 +32,14 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':baselibs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin_version"
+    implementation deps.support.app_compat
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin_version"
     // qmui
 //    implementation 'com.qmuiteam:qmui:1.2.0'
 
     implementation deps.support.core_ktx
+    implementation deps.comdeps.dagger
+    kapt deps.comdeps.daggerCompiler
 
     implementation deps.retrofit.retrofit
     implementation deps.retrofit.gsonConverter
@@ -43,9 +47,15 @@ dependencies {
     implementation deps.retrofit.livedataAdapter
 
 
-
     implementation deps.room.runtime
-    implementation deps.room.compiler
+    kapt deps.room.compiler
+
+    //test
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.androidJunit
+    androidTestImplementation deps.test.core
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.monitor
 
 }
 //@Parcelize标记和LayoutContainer需要设置experimental = true

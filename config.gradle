@@ -18,10 +18,16 @@ def versions=[:]
     versions.retrofit="2.5.0"
     versions.rxandroid="2.1.0"
     versions.room="2.1.0"
+
     versions.junit="4.12"
+    versions.androidxJunit="1.1.1"
+    versions.androidx_test="1.2.0"
+    versions.androidxEspresso="3.2.0"
+
     versions.okhttp3="4.2.2"
     versions.glide="4.8.0"
     versions.livedataAdapter="1.1.2"
+
     versions.dagger="2.25.3"
 ext.versions=versions
 
@@ -69,8 +75,27 @@ room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
 room.testing = "androidx.room:room-testing:$versions.room"
 deps.room = room
 
+/**
+ *
+ Core 1.2.0
+ Espresso 3.2.0
+ Intents 3.2.0
+ JUnit 1.1.1
+ Monitor 1.2.0
+ Orchestrator 1.2.0
+ Runner 1.2.0
+ Rules 1.2.0
+ Truth 1.2.0
+ */
 def test=[:]
 test.junit="junit:junit:$versions.junit"
+test.espresso="androidx.test:espresso:$versions.androidxEspresso"
+test.androidJunit="androidx.test.ext:junit:$versions.androidxJunit"
+test.core="androidx.test:core:$versions.androidx_test"
+test.runner="androidx.test:runner:$versions.androidx_test"
+test.rules="androidx.test:rules:$versions.androidx_test"
+test.monitor="androidx.test:monitor:$versions.androidx_test"
+
 deps.test=test
 
 ext.deps=deps

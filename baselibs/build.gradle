@@ -17,7 +17,6 @@ android {
         targetSdkVersion buildSdk.targetSdkVersion
         versionCode buildSdk.versionCode
         versionName  buildSdk.versionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
 

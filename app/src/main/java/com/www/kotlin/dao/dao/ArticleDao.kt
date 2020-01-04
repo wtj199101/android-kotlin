@@ -1,4 +1,4 @@
-package com.www.kotlin.dao
+package com.www.kotlin.dao.dao
 
 import androidx.room.Dao
 
