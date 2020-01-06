@@ -32,12 +32,19 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':baselibs')
-    implementation deps.support.app_compat
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin_version"
+
+    implementation deps.comdeps.kotlinstdlibjdk8
+    implementation deps.comdeps.anko
+    implementation deps.support.appcompat
+    implementation deps.support.design
+    implementation deps.support.constraintlayout
+    implementation deps.support.annotations
+
     // qmui
 //    implementation 'com.qmuiteam:qmui:1.2.0'
 
-    implementation deps.support.core_ktx
+    implementation deps.support.corektx
+    implementation deps.support.constraintlayout
     implementation deps.comdeps.dagger
     kapt deps.comdeps.daggerCompiler
 
@@ -49,6 +56,11 @@ dependencies {
 
     implementation deps.room.runtime
     kapt deps.room.compiler
+    /**
+     * 第三方ui
+     */
+    implementation deps.thirdapi.shimmer
+    implementation deps.thirdapi.weakhandler
 
     //test
     testImplementation deps.test.junit

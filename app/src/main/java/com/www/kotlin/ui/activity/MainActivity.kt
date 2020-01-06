@@ -9,8 +9,5 @@ class MainActivity : BaseActivity() {
     override fun init(savedInstanceState: Bundle?) {
 
     }
-
     override fun getContentView()=R.layout.activity_main
-
-
 }
