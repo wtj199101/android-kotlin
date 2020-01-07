@@ -19,13 +19,13 @@
         titlebar:rightType="imageButton"
         titlebar:centerSearchRightType="delete"
 
-        app:layout_constraintBottom_toTopOf="@id/layout_content"
+        app:layout_constraintBottom_toTopOf="@id/layout_main_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        android:id="@+id/layout_content"
+        android:id="@+id/layout_main_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/tab_bottom_nav"
