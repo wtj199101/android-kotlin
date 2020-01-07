@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.badoo.mobile.util.WeakHandler
 import com.cxz.kotlin.baselibs.base.BaseActivity
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.www.kotlin.App
 import com.www.kotlin.R
 import kotlinx.android.synthetic.main.activity_splash.*
 import org.jetbrains.anko.startActivity
@@ -20,7 +21,7 @@ class SplashActivity : BaseActivity(){
             startActivity<MainActivity>()
             finish()
         }
-        ,2000L)
+        , App.TIMEOUT)
 
     }
 

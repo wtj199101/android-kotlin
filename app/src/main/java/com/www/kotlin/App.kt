@@ -8,4 +8,8 @@ class App :Application(){
         super.onCreate()
     }
 
+
+    companion object {
+        val TIMEOUT:Long=2000L
+    }
 }
