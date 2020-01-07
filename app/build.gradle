@@ -61,6 +61,7 @@ dependencies {
      */
     implementation deps.thirdapi.shimmer
     implementation deps.thirdapi.weakhandler
+    implementation deps.thirdapi.titlebar
 
     //test
     testImplementation deps.test.junit

@@ -18,6 +18,7 @@ class SplashActivity : BaseActivity(){
         mHandler=WeakHandler()
         mHandler.postDelayed({
             startActivity<MainActivity>()
+            finish()
         }
         ,2000L)
 

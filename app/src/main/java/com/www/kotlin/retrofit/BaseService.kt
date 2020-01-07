@@ -14,19 +14,18 @@ import java.net.Proxy
 
 class BaseService {
 
-      val  baseUsel:String=""
      private var retrofit:Retrofit?=null
 
      companion object{
          val instant: BaseService by lazy (mode = LazyThreadSafetyMode.SYNCHRONIZED){
              BaseService()
          }
-
-
      }
      init {
+         val  baseUrl=""
+
          retrofit= Retrofit.Builder()
-             .baseUrl(baseUsel)
+             .baseUrl(baseUrl)
              .client(getHttpClinet())
              .addCallAdapterFactory(getDefaultCallAdapterFactory())
              .addConverterFactory(LiveDataResponseBodyConverterFactory.create())

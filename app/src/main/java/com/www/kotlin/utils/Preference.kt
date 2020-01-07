@@ -1,20 +1,22 @@
-package com.cxz.kotlin.baselibs.utils
+package com.www.kotlin.utils
 
 import android.content.Context
 import android.content.SharedPreferences
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
+/**
+ * sharePreference 工具类
+ */
+class Preference<T>(private val  context: Context,private val name: String,private val default: T):ReadWriteProperty<Any?,T>{
 
-class Preference<T>(val  context: Context,val name: String,val default: T):
-    ReadWriteProperty<Any?, T> {
+   private val pref: SharedPreferences by lazy { context.getSharedPreferences("default",Context.MODE_PRIVATE) }
 
-  private  val pref: SharedPreferences by lazy { context.getSharedPreferences("default",Context.MODE_PRIVATE) }
     override fun getValue(thisRef: Any?, property: KProperty<*>): T {
         return findPreference(name,default)
     }
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        putPreference(name,value)
+              putPreference(name,value)
     }
     private fun findPreference(name: String, default: T): T = with(pref) {
         var res = when(default){
@@ -25,7 +27,7 @@ class Preference<T>(val  context: Context,val name: String,val default: T):
             is Float -> getFloat(name, default)
             else -> throw IllegalArgumentException("This type can be saved into Preferences")
         }
-        return res as T
+      return res as T
     }
     private fun putPreference(name: String, value: T) = with(pref.edit()){
         when(value){

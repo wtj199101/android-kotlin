@@ -10,4 +10,6 @@ class MainActivity : BaseActivity() {
 
     }
     override fun getContentView()=R.layout.activity_main
+
+
 }
