@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion buildSdk.compileSdkVersion
@@ -33,12 +34,18 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':baselibs')
 
+    //androidx
     implementation deps.comdeps.kotlinstdlibjdk8
     implementation deps.comdeps.anko
     implementation deps.support.appcompat
     implementation deps.support.design
     implementation deps.support.constraintlayout
     implementation deps.support.annotations
+
+   implementation deps.support.navigation_fragment_ktx
+   implementation deps.support.navigation_ui_ktx
+
+
 
     // qmui
 //    implementation 'com.qmuiteam:qmui:1.2.0'
