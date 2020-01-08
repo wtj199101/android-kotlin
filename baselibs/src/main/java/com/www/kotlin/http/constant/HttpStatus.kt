@@ -1,4 +1,4 @@
-package com.cxz.kotlin.baselibs.http.constant
+package com.www.kotlin.http.constant
 
 /**
  * Created by chenxz on 2018/4/21.

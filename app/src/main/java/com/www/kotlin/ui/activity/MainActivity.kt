@@ -4,20 +4,22 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.onNavDestinationSelected
 import com.badoo.mobile.util.WeakHandler
-import com.cxz.kotlin.baselibs.base.BaseActivity
+import com.www.kotlin.base.BaseActivity
 import com.www.kotlin.App
 import com.www.kotlin.R
-import com.www.kotlin.ui.fragments.MainFragment
-import com.www.kotlin.utils.Preference
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_draw_head.*
+import kotlinx.android.synthetic.main.layout_main.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 
 class MainActivity : BaseActivity() {
-    private var mainFragment: MainFragment ?=null
+
+    override fun getContentView()=R.layout.activity_main
 
     private lateinit var mHandler: WeakHandler
 
@@ -25,15 +27,16 @@ class MainActivity : BaseActivity() {
 
     private val msgQuit=0
 
-    private var menuRoot: View?=null
+    private lateinit var menuRoot: View
+
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun init(savedInstanceState: Bundle?) {
-        val beginTransaction = supportFragmentManager.beginTransaction()
-        mainFragment = MainFragment()
-        beginTransaction.replace(R.id.layout_main, mainFragment!!)
-        beginTransaction.commit()
         mHandler=WeakHandler()
-
+        navController=findNavController(R.id.layout_nav_host)
+        appBarConfiguration = AppBarConfiguration(navController.graph,drawerlayout_main)
+//        layout_main.setupWithNavController(navController)
         /********************设置抽屉左边页面*********************/
         //先默认插入图片和姓名
         initUser()
@@ -47,12 +50,16 @@ class MainActivity : BaseActivity() {
            }
             true
         }
+        //底层导航
+        tab_bottom_nav.setOnNavigationItemSelectedListener {
+            it.onNavDestinationSelected(navController)||super.onOptionsItemSelected(it)
+        }
     }
 
     private fun initUser() {
         menuRoot= nav_view.getHeaderView(0)
-        val imageView = menuRoot!!.find<ImageView>(R.id.img_avatar)
-        val textView = menuRoot!!.find<TextView>(R.id.tv_name)
+        val imageView = menuRoot.find<ImageView>(R.id.img_avatar)
+        val textView = menuRoot.find<TextView>(R.id.tv_name)
         textView.text="去登陆"
         imageView.setImageResource(R.drawable.img_avatar)
         textView.setOnClickListener {
@@ -64,7 +71,7 @@ class MainActivity : BaseActivity() {
 
     }
 
-    override fun getContentView()=R.layout.activity_main
+
 
     override fun onBackPressed() {
         super.onBackPressed()

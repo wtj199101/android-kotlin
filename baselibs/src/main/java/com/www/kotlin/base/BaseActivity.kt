@@ -1,4 +1,4 @@
-package com.cxz.kotlin.baselibs.base
+package com.www.kotlin.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

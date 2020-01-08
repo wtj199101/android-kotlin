@@ -1,6 +1,6 @@
-package com.cxz.kotlin.baselibs.http.exception
+package com.www.kotlin.http.exception
 
-import com.cxz.kotlin.baselibs.http.constant.HttpStatus
+import com.www.kotlin.http.constant.HttpStatus
 
 /**
  * Created by chenxz on 2018/4/21.

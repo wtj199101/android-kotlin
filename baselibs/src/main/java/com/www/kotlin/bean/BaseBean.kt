@@ -1,4 +1,4 @@
-package com.cxz.kotlin.baselibs.bean
+package com.www.kotlin.bean
 
 /**
  * @author admin

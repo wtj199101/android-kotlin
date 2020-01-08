@@ -1,4 +1,4 @@
-package com.cxz.kotlin.baselibs.http.constant
+package com.www.kotlin.http.constant
 
 /**
  * @author chenxz

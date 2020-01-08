@@ -1,4 +1,4 @@
-package com.cxz.kotlin.baselibs.http.interceptor
+package com.www.kotlin.http.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

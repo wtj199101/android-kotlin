@@ -1,4 +1,4 @@
-package com.cxz.kotlin.baselibs.utils
+package com.www.kotlin.utils
 
 import android.app.Application
 import android.content.Context

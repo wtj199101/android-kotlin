@@ -1,4 +1,4 @@
-package com.cxz.kotlin.baselibs.utils
+package com.www.kotlin.utils
 
 import android.os.Build
 import android.text.TextUtils
@@ -24,16 +24,16 @@ object RomUtil {
 
     fun getLightStatausBarAvailableRomType(): Int {
         if (isMIUIV6OrAbove()) {
-            return AvailableRomType.MIUI
+            return RomUtil.AvailableRomType.MIUI
         }
 
         if (isFlymeV4OrAbove()) {
-            return AvailableRomType.FLYME
+            return RomUtil.AvailableRomType.FLYME
         }
 
         return if (isAndroidMOrAbove()) {
-            AvailableRomType.ANDROID_NATIVE
-        } else AvailableRomType.NA
+            RomUtil.AvailableRomType.ANDROID_NATIVE
+        } else RomUtil.AvailableRomType.NA
 
     }
 

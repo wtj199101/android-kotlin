@@ -1,4 +1,4 @@
-package com.cxz.kotlin.baselibs.http.exception
+package com.www.kotlin.http.exception
 
 /**
  * Created by chenxz on 2018/4/21.

@@ -1,7 +1,5 @@
-package com.cxz.kotlin.baselibs.http.interceptor
+package com.www.kotlin.http.interceptor
 
-import com.cxz.kotlin.baselibs.utils.NetWorkUtil
-import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Response
 

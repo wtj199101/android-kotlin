@@ -28,6 +28,9 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -44,8 +47,6 @@ dependencies {
 
    implementation deps.support.navigation_fragment_ktx
    implementation deps.support.navigation_ui_ktx
-
-
 
     // qmui
 //    implementation 'com.qmuiteam:qmui:1.2.0'

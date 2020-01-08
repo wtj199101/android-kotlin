@@ -1,6 +1,6 @@
 package com.www.kotlin.retrofit
 
-import com.cxz.kotlin.baselibs.http.interceptor.HeaderInterceptor
+import com.www.kotlin.http.interceptor.HeaderInterceptor
 import com.github.leonardoxh.livedatacalladapter.LiveDataCallAdapterFactory
 import com.github.leonardoxh.livedatacalladapter.LiveDataResponseBodyConverterFactory
 import com.www.kotlin.retrofit.service.RetrofitService
