@@ -5,35 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
-        xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/titlebar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        titlebar:centerText="首页"
-        titlebar:titleBarHeight="0dp"
-        titlebar:titleBarColor="@color/background_white"
-        titlebar:fillStatusBar="false"
-        titlebar:leftImageResource="@drawable/ic_menu"
-        titlebar:leftType="imageButton"
-        titlebar:rightImageResource="@drawable/ic_search"
-        titlebar:rightType="imageButton"
-        titlebar:centerSearchRightType="delete"
-        app:layout_constraintBottom_toTopOf="@id/layout_nav_host"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="首页"
+        app:navigationIcon="@drawable/ic_menu"
+        android:theme="@style/ToolbarTheme"
+    />
     <fragment
         android:id="@+id/layout_nav_host"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_grah"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/tab_bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titlebar" />
+        app:layout_constraintTop_toBottomOf="@id/titlebar"
+        app:navGraph="@navigation/nav_grah" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/tab_bottom_nav"
@@ -43,5 +38,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/nav_menu" />
+        app:menu="@menu/bottom_tab_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -117,7 +117,8 @@ thirdapi.shimmer="com.facebook.shimmer:shimmer:0.3.0"
 thirdapi.weakhandler="com.badoo.mobile:android-weak-handler:1.1"
 //https://github.com/wuhenzhizao/android-titlebar
 thirdapi.titlebar="com.wuhenzhizao:titlebar:1.1.4"
-
+thirdapi.permsn_help="com.github.arvinljw:PermissionHelper:v1.0.1"
+thirdapi.pic_select="com.github.arvinljw:PictureSelector:v2.0.8"
 deps.thirdapi=thirdapi
 
 ext.deps=deps
@@ -126,6 +127,7 @@ ext.deps=deps
 def addReps(RepositoryHandler handler){
     handler.maven {  url 'https://maven.aliyun.com/repository/jcenter'  }
     handler.maven { url 'https://maven.aliyun.com/repository/google' }
+    handler.maven { url 'https://jitpack.io' }
     handler.google()
     handler.jcenter()
 }
