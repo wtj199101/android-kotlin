@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
+android {
+    compileSdkVersion buildSdk.compileSdkVersion
+    defaultConfig {
+        minSdkVersion buildSdk.minSdkVersion
+        targetSdkVersion buildSdk.targetSdkVersion
+        versionCode buildSdk.versionCode
+        versionName buildSdk.versionName
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':baselibs')
+
+    //androidx
+    implementation deps.comdeps.kotlinstdlibjdk8
+    implementation deps.comdeps.anko
+    implementation deps.support.appcompat
+    implementation deps.support.design
+    implementation deps.support.constraintlayout
+    implementation deps.support.annotations
+
+   implementation deps.support.navigation_fragment_ktx
+   implementation deps.support.navigation_ui_ktx
+
+    // qmui
+//    implementation 'com.qmuiteam:qmui:1.2.0'
+
+    implementation deps.support.corektx
+    implementation deps.support.constraintlayout
+    implementation deps.comdeps.dagger
+    kapt deps.comdeps.daggerCompiler
+
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.gsonConverter
+    implementation deps.retrofit.okhttp3Interceptor
+    implementation deps.retrofit.livedataAdapter
+
+
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+
+   // 第三方ui
+    implementation deps.thirdapi.shimmer
+    implementation deps.thirdapi.weakhandler
+    implementation deps.thirdapi.titlebar
+    implementation deps.picture.glide
+    implementation deps.thirdapi.permsn_help
+    implementation deps.thirdapi.pic_select
+
+    //test
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.androidJunit
+    androidTestImplementation deps.test.core
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.monitor
+
+}
+//@Parcelize标记和LayoutContainer需要设置experimental = true
+androidExtensions {
+    experimental = true
+}

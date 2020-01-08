@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@id/homeFragment" android:icon="@drawable/selector_tab_home" android:title="@string/tab_home"/>
+    <item android:id="@id/knowledgeFragment" android:icon="@drawable/selector_tab_knowledge" android:title="@string/tab_knowledge"/>
+    <item android:id="@id/navigationFragment" android:icon="@drawable/selector_tab_navigation" android:title="@string/tab_navigation"/>
+    <item android:id="@id/projectFragment" android:icon="@drawable/selector_tab_project" android:title="@string/tab_project"/>
+</menu>
