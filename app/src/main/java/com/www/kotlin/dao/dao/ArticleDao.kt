@@ -4,6 +4,6 @@ import androidx.room.Dao
 
 
 @Dao
-public interface ArticleDao{
+ interface ArticleDao{
 
 }

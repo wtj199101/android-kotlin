@@ -1,8 +1,4 @@
-package com.base.kotlin.baselibs.http.interceptor
-
-import okhttp3.Interceptor
-import okhttp3.Request
-import okhttp3.Response
+package com.base.kotlin.http.interceptor
 
 /**
  * @author chenxz
