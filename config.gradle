@@ -85,7 +85,7 @@ deps.picture=picture
 def room = [:]
 room.runtime = "androidx.room:room-runtime:$versions.room"
 room.compiler = "androidx.room:room-compiler:$versions.room"
-room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
+//room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
 room.testing = "androidx.room:room-testing:$versions.room"
 deps.room = room
 

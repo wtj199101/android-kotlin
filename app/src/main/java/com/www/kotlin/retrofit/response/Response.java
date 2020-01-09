@@ -1,4 +1,4 @@
-package com.www.kotlin.retrofit;
+package com.www.kotlin.retrofit.response;
 
 /**
  * Created by arvinljw on 2018/10/31 14:58

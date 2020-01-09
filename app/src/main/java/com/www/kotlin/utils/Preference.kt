@@ -18,8 +18,9 @@ class Preference<T>(private val  context: Context,private val name: String,priva
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
               putPreference(name,value)
     }
+    @Suppress("UNCHECKED_CAST")
     private fun findPreference(name: String, default: T): T = with(pref) {
-        var res = when(default){
+        val res:Any = when(default){
             is Long -> getLong(name,default)
             is String -> getString(name, default)
             is Int -> getInt(name, default)

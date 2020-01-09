@@ -61,6 +61,7 @@ dependencies {
     implementation deps.retrofit.okhttp3Interceptor
     implementation deps.retrofit.livedataAdapter
 
+    //jetpack
 
     implementation deps.room.runtime
     kapt deps.room.compiler

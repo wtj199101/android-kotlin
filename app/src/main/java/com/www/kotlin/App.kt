@@ -1,11 +1,11 @@
 package com.www.kotlin
 
 import android.app.Application
-import com.www.kotlin.dagger.DaggerApplicationComponent
+import com.www.kotlin.retrofit.DaggerApplicationComponent
 
 class App :Application(){
 
-    val appComponent=DaggerApplicationComponent.create()
+    val appComponent= DaggerApplicationComponent.create()!!
 
     override fun onCreate() {
         super.onCreate()

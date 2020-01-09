@@ -20,16 +20,15 @@ import java.util.*
  */
 object AppUtil {
 
-    init {
-    }
 
     /*************************** system ****************************/
     /** 得到软件版本号
     * @param context 上下文
+     *
     * @return 当前版本Code
     */
     fun getVerCode(context: Context): Int {
-        var verCode = -1
+        var verCode:Int = -1
         try {
             val packageName = context.packageName
             verCode = context.packageManager
@@ -78,7 +77,7 @@ object AppUtil {
         var reader: BufferedReader? = null
         try {
             reader = BufferedReader(FileReader("/proc/$pid/cmdline"))
-            var processName = reader!!.readLine()
+            var processName = reader.readLine()
             if (!TextUtils.isEmpty(processName)) {
                 processName = processName.trim({ it <= ' ' })
             }
@@ -88,7 +87,7 @@ object AppUtil {
         } finally {
             try {
                 if (reader != null) {
-                    reader!!.close()
+                    reader.close()
                 }
             } catch (exception: IOException) {
                 exception.printStackTrace()
