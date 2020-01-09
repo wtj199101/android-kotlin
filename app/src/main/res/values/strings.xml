@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Kotlin_study</string>
     <string name="title_activity_main">MainActivity</string>
+
     <string name="menu_collection_title">我的收藏</string>
     <string name="menu_setting_title">设置</string>
     <string name="menu_about_us_title">关于我们</string>
@@ -9,4 +10,14 @@
     <string name="tab_knowledge">知识系统</string>
     <string name="tab_navigation">导航</string>
     <string name="tab_project">项目</string>
+
+
+
+    <string name="login_username_hint">请输入用户名</string>
+    <string name="login_password_hint">请输入密码</string>
+    <string name="login_confirm_password_hint">请确认密码</string>
+    <string name="login_button">登 录</string>
+    <string name="register_button">注 册</string>
+    <string name="login_tv_toregister">还没有账号？去注册</string>
+    <string name="login_tv_tologin">已有账号！去登录</string>
 </resources>

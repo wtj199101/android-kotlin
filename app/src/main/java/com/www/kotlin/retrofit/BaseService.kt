@@ -3,7 +3,6 @@ package com.base.kotlin.retrofit
 import com.base.kotlin.http.interceptor.HeaderInterceptor
 import com.github.leonardoxh.livedatacalladapter.LiveDataCallAdapterFactory
 import com.github.leonardoxh.livedatacalladapter.LiveDataResponseBodyConverterFactory
-import com.www.kotlin.retrofit.service.RetrofitService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
@@ -12,6 +11,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.Proxy
 
+/**
+ * 接口
+ */
+interface RetrofitService
+/**
+ * 实现
+ */
 class BaseService {
 
      private var retrofit:Retrofit?=null
