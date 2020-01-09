@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.layout_head.*
 import kotlinx.android.synthetic.main.layout_login.*
 import kotlinx.android.synthetic.main.layout_register.*
-import org.jetbrains.anko.progressDialog
 import javax.inject.Inject
 
 /**
@@ -111,7 +110,7 @@ class LoginRegisterActivity  : BaseActivity(),View.OnClickListener{
 
     private fun login() {
         if(ValidateUtils.validateEditText(login_username) && ValidateUtils.validateEditText(login_password)){
-
+            loginRegisterViewModel
         }
     }
 
