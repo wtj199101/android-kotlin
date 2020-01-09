@@ -1,7 +1,7 @@
 package com.www.kotlin.ui.activity
 
 import android.os.Bundle
-import com.www.kotlin.base.BaseActivity
+import com.base.kotlin.base.BaseActivity
 
 class LoginRegisterActivity  : BaseActivity(){
     override fun init(savedInstanceState: Bundle?) {

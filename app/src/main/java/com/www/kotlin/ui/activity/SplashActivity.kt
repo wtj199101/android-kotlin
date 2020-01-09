@@ -2,7 +2,7 @@ package com.www.kotlin.ui.activity
 
 import android.os.Bundle
 import com.badoo.mobile.util.WeakHandler
-import com.www.kotlin.base.BaseActivity
+import com.base.kotlin.base.BaseActivity
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.www.kotlin.App
 import com.www.kotlin.R
