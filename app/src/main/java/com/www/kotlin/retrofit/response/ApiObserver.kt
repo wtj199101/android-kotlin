@@ -2,6 +2,7 @@ package com.www.kotlin.retrofit.response
 
 import com.base.kotlin.http.BaseObserver
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.warn
 
 abstract class ApiObserver<R> : BaseObserver<Response<R>>(),AnkoLogger {
 
@@ -12,11 +13,9 @@ abstract class ApiObserver<R> : BaseObserver<Response<R>>(),AnkoLogger {
         }else{
             onFailure(response.errorCode,response.errorMsg)
         }
-
     }
-
     private fun onFailure(code: Int, msg: String?) {
-        error("#request_ERROR: code->$code,msg->$msg")
+        warn("#request_ERROR: code->$code,msg->$msg")
     }
 
 

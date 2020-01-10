@@ -1,5 +1,7 @@
 package com.base.kotlin.http;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 
@@ -27,6 +29,7 @@ public abstract class BaseObserver<R> implements Observer<Resource<R>> {
     }
 
     public void onError(Throwable throwable) {
+        Log.e("BaseObserver error",throwable.getMessage());
     }
 
     public abstract void callback(R response);

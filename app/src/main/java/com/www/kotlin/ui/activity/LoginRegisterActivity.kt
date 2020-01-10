@@ -9,6 +9,7 @@ import androidx.core.animation.addListener
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import com.base.kotlin.base.BaseActivity
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -167,7 +168,6 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener, AnkoLogger {
                        info ( "loginUser=$entity" )
                        entity.password=login_password.text.toString()
                    }
-
                }
             )
         }

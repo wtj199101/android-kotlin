@@ -24,7 +24,7 @@ class ApiModule{
     @Singleton
     fun provideLoginRegisterService(): LoginRegisterRetrofitService {
         return Retrofit.Builder()
-            .baseUrl("http://wanandroid.com/")
+            .baseUrl("https://wanandroid.com/")
             .addCallAdapterFactory(LiveDataCallAdapterFactory.create())
             .addConverterFactory(LiveDataResponseBodyConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
