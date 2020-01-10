@@ -2,52 +2,66 @@ package com.www.kotlin.ui.activity
 
 import android.animation.Animator
 import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
 import android.os.Bundle
 import android.view.View
+import androidx.core.animation.addListener
+import androidx.core.animation.doOnEnd
+import androidx.core.animation.doOnStart
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.base.kotlin.base.BaseActivity
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.material.animation.AnimatorSetCompat
 import com.www.kotlin.App
 import com.www.kotlin.R
+import com.www.kotlin.dao.entity.LoginResultEntity
+import com.www.kotlin.lifecycle.ShimmerFrameLifeCycle
+import com.www.kotlin.retrofit.response.ApiObserver
+import com.www.kotlin.retrofit.response.Response
 import com.www.kotlin.utils.ValidateUtils
 import com.www.kotlin.viewmodel.LoginRegisterViewModel
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.layout_head.*
 import kotlinx.android.synthetic.main.layout_login.*
 import kotlinx.android.synthetic.main.layout_register.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
+import org.jetbrains.anko.intentFor
 import javax.inject.Inject
 
 /**
  * 登录和注册页面activity
  */
-class LoginRegisterActivity  : BaseActivity(),View.OnClickListener{
+class LoginRegisterActivity : BaseActivity(), View.OnClickListener, AnkoLogger {
 
 
-    override fun getContentView()= R.layout.activity_login
+    override fun getContentView() = R.layout.activity_login
 
-    private lateinit var loginShimmer: ShimmerFrameLayout
 
     private lateinit var registerShimmer: ShimmerFrameLayout
 
-    private lateinit  var animatorOut: Animator
-    private lateinit   var animatorIn:Animator
+    private lateinit var animatorOut: AnimatorSet
+    private lateinit var animatorIn: AnimatorSet
 
     @Inject
     lateinit var loginRegisterViewModel: LoginRegisterViewModel
 
 
+    private var login_card: Boolean = true
+
+
     override fun init(savedInstanceState: Bundle?) {
         (applicationContext as App).appComponent.inject(this)
 
-        loginShimmer= layout_login_shimmer
-        registerShimmer= layout_register_shimmer
-        loginShimmer.startShimmer()
-        registerShimmer.startShimmer()
+        ShimmerFrameLifeCycle(applicationContext,lifecycle,layout_login_shimmer)
+        ShimmerFrameLifeCycle(applicationContext,lifecycle,layout_register_shimmer)
 
         setSupportActionBar(titlebar)
-        titlebar.title="登录"
+        titlebar.title = "登录"
         titlebar.setNavigationOnClickListener {
-           v->v.findNavController().popBackStack()
+            super.onBackPressed()
         }
         //注册登录和注册事件
         btn_login.setOnClickListener(this)
@@ -57,22 +71,52 @@ class LoginRegisterActivity  : BaseActivity(),View.OnClickListener{
         tv_to_register.setOnClickListener(this)
         //设置动画
         setAnimators()
-
         //设置镜头距离
+        setCameraDistance()
+    }
 
+    private fun setCameraDistance() {
+        val distance = 16000
+        val scale = resources.displayMetrics.density * distance
+        layout_login.cameraDistance = scale
+        layout_register.cameraDistance = scale
     }
 
     private fun setAnimators() {
-          animatorOut = AnimatorInflater.loadAnimator(this, R.animator.card_flip_out)
-          animatorIn=AnimatorInflater.loadAnimator(this,R.animator.card_flip_in)
+        animatorOut = AnimatorSet().apply {
+            play(
+                AnimatorInflater.loadAnimator(
+                    this@LoginRegisterActivity,
+                    R.animator.card_flip_out
+                )
+            )
+            doOnStart {
+                layout_register.visibility = View.VISIBLE
+                layout_login.visibility = View.VISIBLE
+            }
+        }
+        animatorIn = AnimatorSet().apply {
+            play(AnimatorInflater.loadAnimator(this@LoginRegisterActivity, R.animator.card_flip_in))
+            doOnEnd {
+                it.doOnEnd {
+                    if (login_card) {
+                        layout_register.visibility = View.VISIBLE
+                        layout_login.visibility = View.GONE
+                    } else {
+                        layout_login.visibility = View.VISIBLE
+                        layout_register.visibility = View.GONE
+                    }
+                }
+            }
+        }
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btn_login-> login()
-            R.id.btn_register-> register()
-            R.id.tv_to_register->filpCard(true)
-            R.id.tv_to_login->filpCard(false)
+        when (v!!.id) {
+            R.id.btn_login -> login()
+            R.id.btn_register -> register()
+            R.id.tv_to_register -> filpCard(true)
+            R.id.tv_to_login -> filpCard(false)
         }
     }
 
@@ -80,27 +124,29 @@ class LoginRegisterActivity  : BaseActivity(),View.OnClickListener{
      * true -> login to register
      * false ->  register to login
      */
-    private fun filpCard(arrow:Boolean) {
-        if(arrow){
+    private fun filpCard(arrow: Boolean) {
+        if (arrow) {
+            login_card = arrow
             animatorOut.run {
-                setTarget(layout_login)
+                animatorOut.setTarget(layout_login)
                 start()
             }
             animatorIn.run {
-                setTarget(layout_register)
+                animatorIn.setTarget(layout_register)
                 start()
             }
-            titlebar.title="注册"
-        }else{
+            titlebar.title = "注册"
+        } else {
+            login_card = arrow
             animatorOut.run {
-                setTarget(layout_register)
+                animatorOut.setTarget(layout_register)
                 start()
             }
             animatorIn.run {
-                setTarget(layout_login)
+                animatorIn.setTarget(layout_login)
                 start()
             }
-            titlebar.title="登录"
+            titlebar.title = "登录"
         }
     }
 
@@ -109,22 +155,22 @@ class LoginRegisterActivity  : BaseActivity(),View.OnClickListener{
     }
 
     private fun login() {
-        if(ValidateUtils.validateEditText(login_username) && ValidateUtils.validateEditText(login_password)){
-            loginRegisterViewModel
+        if (ValidateUtils.validateEditText(login_username) && ValidateUtils.validateEditText(
+                login_password
+            )
+        ) {
+            info ("11111" )
+            loginRegisterViewModel.loginUser(login_username.text.toString(),login_password.text.toString()).observe(this,
+               object: ApiObserver<LoginResultEntity>() {
+                   override fun onSuccess(response: Response<LoginResultEntity>?) {
+                      var  entity:LoginResultEntity= response!!.data
+                       info ( "loginUser=$entity" )
+                       entity.password=login_password.text.toString()
+                   }
+
+               }
+            )
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-        loginShimmer.startShimmer()
-        registerShimmer.startShimmer()
-    }
-
-    override fun onPause() {
-        loginShimmer.stopShimmer()
-        registerShimmer.stopShimmer()
-        super.onPause()
-    }
-
 
 }

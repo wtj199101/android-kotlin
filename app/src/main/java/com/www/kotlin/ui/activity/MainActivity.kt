@@ -22,11 +22,9 @@ import com.www.kotlin.dao.entity.LoginResultEntity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_main.*
 import net.arvin.selector.SelectorHelper
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.find
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.*
 
-class MainActivity : BaseActivity(), View.OnClickListener {
+class MainActivity : BaseActivity(),AnkoLogger {
 
     private var user: LoginResultEntity? = null
 
@@ -75,21 +73,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             titlebar.title = it.title
             it.onNavDestinationSelected(navController) || super.onOptionsItemSelected(it)
         }
-    }
-
-    override fun onClick(v: View?) {
-        when (v!!.id) {
-            R.id.img_avatar -> {
-              if(!hasLogin()){
-                return
-              }
-                changeAvatar()
-            }
-            R.id.tv_name -> {
-                toast("去登录")
-            }
-        }
-
     }
 
     private fun changeAvatar() {
@@ -149,6 +132,16 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         menuRoot = nav_view.getHeaderView(0)
         val imageView = menuRoot.find<ImageView>(R.id.img_avatar)
         val textView = menuRoot.find<TextView>(R.id.tv_name)
+        menuRoot.find<ImageView>(R.id.img_avatar ).setOnClickListener {
+            if(!hasLogin()){
+
+            }else{
+                changeAvatar()
+            }
+        }
+        menuRoot.find<TextView>(R.id.tv_name).setOnClickListener {
+            navController.navigate(R.id.loginRegisterActivity)
+        }
 
     }
 

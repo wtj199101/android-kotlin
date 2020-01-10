@@ -7,9 +7,8 @@ class App :Application(){
 
     val appComponent= DaggerApplicationComponent.create()!!
 
-    override fun onCreate() {
-        super.onCreate()
-    }
+    override fun onCreate()=super.onCreate()
+
     companion object {
         val TIMEOUT:Long=2000L
     }

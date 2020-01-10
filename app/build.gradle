@@ -47,24 +47,35 @@ dependencies {
 
    implementation deps.support.navigation_fragment_ktx
    implementation deps.support.navigation_ui_ktx
-
     // qmui
 //    implementation 'com.qmuiteam:qmui:1.2.0'
 
     implementation deps.support.corektx
     implementation deps.support.constraintlayout
-    implementation deps.comdeps.dagger
-    kapt deps.comdeps.daggerCompiler
+
+
 
     implementation deps.retrofit.retrofit
     implementation deps.retrofit.gsonConverter
     implementation deps.retrofit.okhttp3Interceptor
     implementation deps.retrofit.livedataAdapter
 
+    implementation deps.dagger.dagger2
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.daggerCompiler
+    kapt deps.dagger.android_support_compiler
+
     //jetpack
 
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.java8
+    implementation deps.lifecycle.viewmodel_ktx
+    implementation deps.lifecycle.livedata_ktx
     implementation deps.room.runtime
+
     kapt deps.room.compiler
+    kapt deps.lifecycle.compiler
 
    // 第三方ui
     implementation deps.thirdapi.shimmer
@@ -81,6 +92,7 @@ dependencies {
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.monitor
 
+    implementation 'org.conscrypt:conscrypt-android:2.2.1'
 }
 //@Parcelize标记和LayoutContainer需要设置experimental = true
 androidExtensions {

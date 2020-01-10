@@ -1,4 +1,4 @@
-package com.www.kotlin.retrofit.service
+package com.www.kotlin.retrofit
 
 import androidx.lifecycle.LiveData
 import com.github.leonardoxh.livedatacalladapter.Resource
@@ -12,11 +12,11 @@ interface LoginRegisterRetrofitService {
     /*=======登陆注册======*/
     @POST("user/login")
     @FormUrlEncoded
-    abstract fun login(@Field("username") username: String, @Field("password") password: String): LiveData<Resource<Response<LoginResultEntity>>>
+      fun login(@Field("username") username: String, @Field("password") password: String): LiveData<Resource<Response<LoginResultEntity>>>
 
     @POST("user/register")
     @FormUrlEncoded
-    abstract fun register(
+      fun register(
         @Field("username") username: String, @Field("password") password: String, @Field(
             "repassword"
         ) repassword: String

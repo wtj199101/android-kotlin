@@ -6,23 +6,24 @@ import com.base.kotlin.base.BaseActivity
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.www.kotlin.App
 import com.www.kotlin.R
+import com.www.kotlin.lifecycle.ShimmerFrameLifeCycle
 import kotlinx.android.synthetic.main.activity_splash.*
 import org.jetbrains.anko.startActivity
 
 class SplashActivity : BaseActivity(){
-    private lateinit  var  layoutShimmer: ShimmerFrameLayout
+//    private lateinit  var  layoutShimmer: ShimmerFrameLayout
 
     private lateinit var mHandler:WeakHandler
 
     override fun init(savedInstanceState: Bundle?) {
-        layoutShimmer=layout_shimmer
+//        layoutShimmer=layout_shimmer
+        ShimmerFrameLifeCycle(applicationContext,lifecycle,layout_shimmer)
         mHandler=WeakHandler()
         mHandler.postDelayed({
             startActivity<MainActivity>()
             finish()
         }
         , App.TIMEOUT)
-
     }
 
 
@@ -30,11 +31,11 @@ class SplashActivity : BaseActivity(){
 
     override fun onResume() {
         super.onResume()
-        layoutShimmer.startShimmer()
+//        layoutShimmer.startShimmer()
     }
 
     override fun onPause() {
-        layoutShimmer.stopShimmer()
+//        layoutShimmer.stopShimmer()
         super.onPause()
     }
 }
