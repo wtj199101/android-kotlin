@@ -12,7 +12,7 @@ class AboutUsActivity :BaseActivity(){
     override fun getContentView()=R.layout.activity_about_us
 
     override fun init(savedInstanceState: Bundle?) {
-        titlebar.title="关于我们"
+        titlebar.title="关于App"
         titlebar.setNavigationOnClickListener { onBackPressed() }
         tv_version.text="v${App.getVersionName()}"
         lifecycle.addObserver(ShimmerFrameLifeCycle(lifecycle,layout_shimmer))

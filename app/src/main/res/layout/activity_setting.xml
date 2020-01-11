@@ -202,6 +202,7 @@
         android:layout_marginRight="@dimen/dp_40"
         android:layout_marginBottom="@dimen/dp_16"
         android:background="@drawable/bg_item"
+        android:textAppearance="?android:attr/textAppearance"
         android:gravity="center"
         android:padding="@dimen/spacing"
         android:text="退出登录"
