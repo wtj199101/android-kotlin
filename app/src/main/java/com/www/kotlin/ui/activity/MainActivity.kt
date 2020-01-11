@@ -151,11 +151,11 @@ class MainActivity : BaseActivity(),AnkoLogger {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         if (!canQuit) {
             canQuit = true
             toast("再按一次返回键退出～")
-            mHandler.sendEmptyMessageDelayed(msgQuit, App.TIMEOUT)
+            return
         }
+        super.onBackPressed()
     }
 }

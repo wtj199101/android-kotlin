@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.animation.addListener
 import androidx.core.animation.doOnEnd
@@ -55,10 +56,10 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener, AnkoLogger {
 
     override fun init(savedInstanceState: Bundle?) {
         (applicationContext as App).appComponent.inject(this)
-
-        ShimmerFrameLifeCycle(applicationContext,lifecycle,layout_login_shimmer)
-        ShimmerFrameLifeCycle(applicationContext,lifecycle,layout_register_shimmer)
-
+        lifecycle.run {
+            addObserver( ShimmerFrameLifeCycle(lifecycle,layout_login_shimmer))
+            addObserver( ShimmerFrameLifeCycle(lifecycle,layout_register_shimmer))
+        }
         setSupportActionBar(titlebar)
         titlebar.title = "登录"
         titlebar.setNavigationOnClickListener {
