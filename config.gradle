@@ -134,6 +134,8 @@ thirdapi.weakhandler="com.badoo.mobile:android-weak-handler:1.1"
 thirdapi.titlebar="com.wuhenzhizao:titlebar:1.1.4"
 thirdapi.permsn_help="com.github.arvinljw:PermissionHelper:v1.0.1"
 thirdapi.pic_select="com.github.arvinljw:PictureSelector:v2.0.8"
+//https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/readme/0-BaseRecyclerViewAdapterHelper.md
+thirdapi.CymChadRecyclerViewAdapterHelper= "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.0-beta10"
 deps.thirdapi=thirdapi
 
 ext.deps=deps
