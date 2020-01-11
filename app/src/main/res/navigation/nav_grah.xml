@@ -4,10 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_grah"
     app:startDestination="@id/homeFragment">
-        <activity
-            android:id="@+id/loginRegisterActivity"
-            android:name="com.www.kotlin.ui.activity.LoginRegisterActivity"
-            android:label="LoginRegisterActivity" />
+
         <fragment
             android:id="@+id/homeFragment"
             android:name="com.www.kotlin.ui.fragments.HomeFragment"
@@ -29,5 +26,21 @@
         <action android:id="@+id/action_global_knowledgeFragment" app:destination="@id/knowledgeFragment"  app:popUpToInclusive="true"/>
         <action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment"  app:popUpToInclusive="true"/>
         <action android:id="@+id/action_global_projectFragment" app:destination="@id/projectFragment"  app:popUpToInclusive="true" />
+        <activity
+            android:id="@+id/loginRegisterActivity"
+            android:name="com.www.kotlin.ui.activity.LoginRegisterActivity"
+            android:label="LoginRegisterActivity" />
+        <activity
+            android:id="@+id/settingActivity"
+            android:name="com.www.kotlin.ui.activity.SettingActivity"
+            android:label="SettingActivity" />
+        <activity
+            android:id="@+id/aboutUsActivity"
+            android:name="com.www.kotlin.ui.activity.AboutUsActivity"
+            android:label="AboutUsActivity" />
+        <activity
+            android:id="@+id/collectionArticleActivity"
+            android:name="com.www.kotlin.ui.activity.CollectionArticleActivity"
+            android:label="CollectionArticleActivity" />
 
 </navigation>

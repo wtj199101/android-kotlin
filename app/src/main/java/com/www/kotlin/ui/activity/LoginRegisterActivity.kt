@@ -1,36 +1,27 @@
 package com.www.kotlin.ui.activity
 
-import android.animation.Animator
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.core.animation.addListener
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
-import androidx.navigation.findNavController
 import com.base.kotlin.base.BaseActivity
-import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.android.material.animation.AnimatorSetCompat
 import com.www.kotlin.App
 import com.www.kotlin.R
 import com.www.kotlin.dao.entity.LoginResultEntity
 import com.www.kotlin.lifecycle.ShimmerFrameLifeCycle
 import com.www.kotlin.retrofit.response.ApiObserver
 import com.www.kotlin.retrofit.response.Response
+import com.www.kotlin.utils.Preference
 import com.www.kotlin.utils.ValidateUtils
 import com.www.kotlin.viewmodel.LoginRegisterViewModel
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.layout_head.*
 import kotlinx.android.synthetic.main.layout_login.*
 import kotlinx.android.synthetic.main.layout_register.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
@@ -41,30 +32,34 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener, AnkoLogger {
 
     override fun getContentView() = R.layout.activity_login
 
-
-    private lateinit var registerShimmer: ShimmerFrameLayout
-
     private lateinit var animatorOut: AnimatorSet
     private lateinit var animatorIn: AnimatorSet
 
     @Inject
     lateinit var loginRegisterViewModel: LoginRegisterViewModel
 
-
     private var login_card: Boolean = true
+
+    private  var loginName by Preference(this,"loginName","")
+    private  var appToken by Preference(this,"appToken","")
+    private lateinit var loginPassword:String
+    private   var registerName:String by Preference(this,"registerName","")
+    private   var registerPassword:String  by Preference(this,"registerPassword","")
+    private   var confirmPassword:String  by Preference(this,"confirmPassword","")
 
 
     override fun init(savedInstanceState: Bundle?) {
         (applicationContext as App).appComponent.inject(this)
         lifecycle.run {
-            addObserver( ShimmerFrameLifeCycle(lifecycle,layout_login_shimmer))
-            addObserver( ShimmerFrameLifeCycle(lifecycle,layout_register_shimmer))
+            addObserver(ShimmerFrameLifeCycle(lifecycle,layout_login_shimmer))
+            addObserver(ShimmerFrameLifeCycle(lifecycle,layout_register_shimmer))
         }
         setSupportActionBar(titlebar)
         titlebar.title = "登录"
         titlebar.setNavigationOnClickListener {
             super.onBackPressed()
         }
+        login_username.setText(loginName)
         //注册登录和注册事件
         btn_login.setOnClickListener(this)
         btn_register.setOnClickListener(this)
@@ -153,22 +148,52 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener, AnkoLogger {
     }
 
     private fun register() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if(ValidateUtils.validateEditText(register_username)
+            &&ValidateUtils.validateEditText(register_password)
+            &&ValidateUtils.validateEditText(confirm_password)){
+            registerName = register_username.text.toString()
+            registerPassword=  register_password.text.toString()
+            confirmPassword=  confirm_password.text.toString()
+            if(registerPassword!=confirmPassword){
+                toast("密码不一致！")
+                //这边一般是加监听器，这边 TODO
+                return
+            }
+            loginRegisterViewModel.registerUser(registerName,registerPassword).observe(this,object :ApiObserver<LoginResultEntity>(){
+                override fun onSuccess(response: Response<LoginResultEntity>?) {
+                    toast("注册成功")
+
+                    onBackPressed()
+                }
+                override fun onFailure(code: Int, msg: String?) {
+                    super.onFailure(code, msg)
+                    if (msg != null) {
+                        toast(msg)
+                    }
+                }
+            })
+        }
+
     }
 
     private fun login() {
-        if (ValidateUtils.validateEditText(login_username) && ValidateUtils.validateEditText(
-                login_password
-            )
-        ) {
-            info ("11111" )
+        if (ValidateUtils.validateEditText(login_username) && ValidateUtils.validateEditText( login_password )  ) {
             loginRegisterViewModel.loginUser(login_username.text.toString(),login_password.text.toString()).observe(this,
                object: ApiObserver<LoginResultEntity>() {
                    override fun onSuccess(response: Response<LoginResultEntity>?) {
-                      var  entity:LoginResultEntity= response!!.data
-                       info ( "loginUser=$entity" )
-                       entity.password=login_password.text.toString()
+                       loginName=login_username.text.toString()
+                       loginPassword=login_password.text.toString()
+                        toast("登录成功")
+                       appToken=registerName
+                       onBackPressed()
                    }
+                   override fun onFailure(code: Int, msg: String?) {
+                       super.onFailure(code, msg)
+                       if (msg != null) {
+                           toast(msg)
+                       }
+                   }
+
                }
             )
         }

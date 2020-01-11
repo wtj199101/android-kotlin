@@ -24,5 +24,9 @@ class LoginRegisterViewModel @Inject constructor( loginRegisterService: LoginReg
         return loginService.login(username!!, password!!)
     }
 
+    fun registerUser(registerName: String, registerPassword: String): LiveData<Resource<Response<LoginResultEntity>>> {
+        return loginService.register(registerName,registerPassword,registerPassword)
+    }
+
 
 }

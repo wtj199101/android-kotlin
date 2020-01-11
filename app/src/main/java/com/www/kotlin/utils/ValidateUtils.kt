@@ -10,7 +10,7 @@ object ValidateUtils {
      */
     fun validateEditText(editText: EditText,msg:String="参数错误"):Boolean{
         var value=editText.text
-        if(value==null||value.isEmpty()){
+        if(value==null||value.trim().isEmpty()){
             editText.error=msg
             return false
         }

@@ -31,6 +31,5 @@ public abstract class BaseObserver<R> implements Observer<Resource<R>> {
     public void onError(Throwable throwable) {
         Log.e("BaseObserver error",throwable.getMessage());
     }
-
     public abstract void callback(R response);
 }

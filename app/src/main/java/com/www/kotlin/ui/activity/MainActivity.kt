@@ -19,6 +19,7 @@ import com.base.kotlin.utils.PermissionUtil
 import com.www.kotlin.App
 import com.www.kotlin.R
 import com.www.kotlin.dao.entity.LoginResultEntity
+import com.www.kotlin.utils.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_main.*
 import net.arvin.selector.SelectorHelper
@@ -26,15 +27,16 @@ import org.jetbrains.anko.*
 
 class MainActivity : BaseActivity(),AnkoLogger {
 
-    private var user: LoginResultEntity? = null
+
+    private  var appToken by Preference(this,"appToken","")
+
+    private  var userAvatar by Preference(this,"userAvatar","")
 
     override fun getContentView() = R.layout.activity_main
 
     private lateinit var mHandler: WeakHandler
 
     private var canQuit: Boolean = false
-
-    private val msgQuit = 0
 
     private lateinit var menuRoot: View
 
@@ -54,17 +56,21 @@ class MainActivity : BaseActivity(),AnkoLogger {
 
         navController = findNavController(R.id.layout_nav_host)
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerlayout_main)
-//        layout_main.setupWithNavController(navController)
         /********************设置抽屉左边页面*********************/
         //先默认插入图片和姓名
         initUser()
         //菜单的点击
         nav_view.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.menu_collection -> toast("点击了我的收藏")
-                R.id.menu_setting -> toast("点击了我的设置")
-                R.id.menu_about_us -> toast("点击了关于我们")
-                else -> toast("未知点击")
+                R.id.menu_collection ->
+                    if (hasLogin()){
+                        navController.navigate(R.id.collectionArticleActivity)
+                }else{
+                        navController.navigate(R.id.loginRegisterActivity)
+                    }
+                R.id.menu_setting ->   navController.navigate(R.id.settingActivity)
+                R.id.menu_about_us ->  navController.navigate(R.id.aboutUsActivity)
+                else -> toast("别点了，疼")
             }
             true
         }
@@ -97,7 +103,6 @@ class MainActivity : BaseActivity(),AnkoLogger {
                     REQ_CODE_CHANGE_AVATAR
                 )}
             negativeButton("取消"){
-
             }
         }.show()
     }
@@ -126,17 +131,15 @@ class MainActivity : BaseActivity(),AnkoLogger {
      * true login
      * false not login
      */
-    fun hasLogin(): Boolean = user != null
+    fun hasLogin(): Boolean = appToken != null
 
     private fun initUser() {
         menuRoot = nav_view.getHeaderView(0)
-        val imageView = menuRoot.find<ImageView>(R.id.img_avatar)
-        val textView = menuRoot.find<TextView>(R.id.tv_name)
         menuRoot.find<ImageView>(R.id.img_avatar ).setOnClickListener {
-            if(!hasLogin()){
-
-            }else{
+            if(hasLogin()){
                 changeAvatar()
+            }else{
+                navController.navigate(R.id.loginRegisterActivity)
             }
         }
         menuRoot.find<TextView>(R.id.tv_name).setOnClickListener {
