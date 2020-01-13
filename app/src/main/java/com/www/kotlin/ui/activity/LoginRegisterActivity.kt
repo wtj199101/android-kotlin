@@ -7,20 +7,19 @@ import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import com.base.kotlin.base.BaseActivity
-import com.www.kotlin.App
 import com.www.kotlin.R
 import com.www.kotlin.dao.entity.LoginResultEntity
-import com.www.kotlin.lifecycle.ShimmerFrameLifeCycle
+import com.www.kotlin.ui.lifecycle.ShimmerFrameLifeCycle
 import com.www.kotlin.retrofit.response.ApiObserver
 import com.www.kotlin.retrofit.response.Response
 import com.www.kotlin.utils.Preference
 import com.www.kotlin.utils.ValidateUtils
-import com.www.kotlin.viewmodel.LoginRegisterViewModel
+import com.www.kotlin.ui.viewmodel.LoginRegisterViewModel
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.layout_head.*
 import kotlinx.android.synthetic.main.layout_login.*
 import kotlinx.android.synthetic.main.layout_register.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
@@ -49,7 +48,7 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener, AnkoLogger {
 
 
     override fun init(savedInstanceState: Bundle?) {
-        (applicationContext as App).appComponent.inject(this)
+        AndroidInjection.inject(this)
         lifecycle.run {
             addObserver(ShimmerFrameLifeCycle(lifecycle,layout_login_shimmer))
             addObserver(ShimmerFrameLifeCycle(lifecycle,layout_register_shimmer))

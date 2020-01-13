@@ -1,4 +1,4 @@
-package com.www.kotlin.lifecycle
+package com.www.kotlin.ui.lifecycle
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

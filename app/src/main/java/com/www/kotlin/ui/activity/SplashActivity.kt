@@ -3,10 +3,9 @@ package com.www.kotlin.ui.activity
 import android.os.Bundle
 import com.badoo.mobile.util.WeakHandler
 import com.base.kotlin.base.BaseActivity
-import com.facebook.shimmer.ShimmerFrameLayout
 import com.www.kotlin.App
 import com.www.kotlin.R
-import com.www.kotlin.lifecycle.ShimmerFrameLifeCycle
+import com.www.kotlin.ui.lifecycle.ShimmerFrameLifeCycle
 import kotlinx.android.synthetic.main.activity_splash.*
 import org.jetbrains.anko.startActivity
 

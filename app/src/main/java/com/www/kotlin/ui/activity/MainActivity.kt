@@ -20,6 +20,7 @@ import com.www.kotlin.App
 import com.www.kotlin.R
 import com.www.kotlin.dao.entity.LoginResultEntity
 import com.www.kotlin.utils.Preference
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_main.*
 import net.arvin.selector.SelectorHelper
@@ -45,6 +46,7 @@ class MainActivity : BaseActivity(),AnkoLogger {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun init(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         mHandler = WeakHandler()
         //设置标题
         setSupportActionBar(titlebar)

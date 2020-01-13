@@ -44,7 +44,7 @@
         android:text="郭霖"
         android:textColor="@color/secondary_text"
         android:textSize="@dimen/text_12"
-        app:layout_constraintBottom_toTopOf="tv_desc"
+        app:layout_constraintBottom_toTopOf="@id/tv_desc"
         app:layout_constraintLeft_toRightOf="@id/iv_icon"
         app:layout_constraintRight_toLeftOf="@id/tv_time"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
@@ -60,7 +60,7 @@
         app:layout_constraintLeft_toRightOf="@id/tv_author"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         app:layout_constraintRight_toRightOf="@id/tv_chapter"
-        app:layout_constraintBottom_toTopOf="tv_desc"
+        app:layout_constraintBottom_toTopOf="@id/tv_desc"
         />
 
     <TextView
@@ -79,7 +79,7 @@
         app:layout_constraintLeft_toRightOf="@id/tv_time"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         app:layout_constraintRight_toRightOf="@id/img_collection"
-        app:layout_constraintBottom_toTopOf="tv_desc"
+        app:layout_constraintBottom_toTopOf="@id/tv_desc"
         />
     <ImageView
         android:id="@+id/img_collection"
@@ -90,7 +90,7 @@
         app:layout_constraintLeft_toRightOf="@id/tv_chapter"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
-        app:layout_constraintBottom_toTopOf="tv_desc"
+        app:layout_constraintBottom_toTopOf="@id/tv_desc"
         />
 
     <TextView

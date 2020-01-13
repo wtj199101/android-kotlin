@@ -1,4 +1,4 @@
-package com.www.kotlin.retrofit
+package com.www.kotlin.retrofit.service
 
 import androidx.lifecycle.LiveData
 import com.github.leonardoxh.livedatacalladapter.Resource

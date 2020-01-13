@@ -13,7 +13,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun articleDao(): ArticleDao
 
     companion object {
-        private val APP_DATABASE:String="kotlin_study_db"
+       private const val APP_DATABASE:String="kotlin_study_db"
         @Volatile
         private var Instant: AppDatabase? = null
 

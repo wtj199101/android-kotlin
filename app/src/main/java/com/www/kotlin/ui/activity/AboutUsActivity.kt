@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.base.kotlin.base.BaseActivity
 import com.www.kotlin.App
 import com.www.kotlin.R
-import com.www.kotlin.lifecycle.ShimmerFrameLifeCycle
+import com.www.kotlin.ui.lifecycle.ShimmerFrameLifeCycle
 import kotlinx.android.synthetic.main.activity_about_us.*
 import kotlinx.android.synthetic.main.layout_head.*
 

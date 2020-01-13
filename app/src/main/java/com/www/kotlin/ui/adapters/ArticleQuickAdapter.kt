@@ -2,28 +2,48 @@ package com.www.kotlin.ui.adapters
 
 import android.graphics.Color
 import android.text.SpannableString
-import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
+import android.view.View
+import android.widget.ImageView
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.www.kotlin.R
 import com.www.kotlin.dao.entity.ArticleEntity
+import com.www.kotlin.dao.entity.PageList
+import com.www.kotlin.utils.ImageLoadUtils
 
-class ArticleQuickAdapter(var layoutId:Int=R.layout.item_home_article) : BaseQuickAdapter<ArticleEntity, BaseViewHolder>(layoutId){
+class ArticleQuickAdapter(var recyclerView: RecyclerView, var swipeRefreshLayout: SwipeRefreshLayout ) : BaseQuickAdapter<ArticleEntity, BaseViewHolder>(recyclerView.id){
+
+    private var cycleView=recyclerView
+
+    private var refreshLayout=swipeRefreshLayout
+
+    private var showCollection:Boolean=true
+
+      var currPage:Int=0
 
 
 
     override fun convert(helper: BaseViewHolder, item: ArticleEntity?) {
         if(item!=null){
-            helper.setText(R.id.iv_icon,deal(item.title!!))
+            helper.setText(R.id.tv_title,deal(item.title!!))
             helper.setText(R.id.tv_time, item.niceDate)
             helper.setText(R.id.tv_desc, item.desc)
             helper.setGone(R.id.tv_desc, item.desc!!.isNotEmpty())
             helper.setText(R.id.tv_author, item.author)
             helper.setText(R.id.tv_chapter, item.chapterName)
-
+            if(showCollection){
+                helper.setImageResource(R.id.img_collection,if(item.collect){R.drawable.ic_collection}else{ R.drawable.ic_uncollection})
+            }else{
+                helper.setGone(R.id.img_collection, false)
+            }
+            val imgIcon = helper.getView<ImageView>(R.id.iv_icon)
+            ImageLoadUtils.loadImage(context, item.envelopePic!!,imgIcon)
+            helper.setGone(R.id.iv_icon, item.envelopePic!!.isNotEmpty())
         }
-
     }
 
 
@@ -47,5 +67,15 @@ class ArticleQuickAdapter(var layoutId:Int=R.layout.item_home_article) : BaseQui
         )
         return sb
     }
+
+
+
+
+
+
+
 }
+
+
+
 

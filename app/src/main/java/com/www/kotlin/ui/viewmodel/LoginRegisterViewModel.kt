@@ -1,13 +1,12 @@
-package com.www.kotlin.viewmodel
+package com.www.kotlin.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.leonardoxh.livedatacalladapter.Resource
 import com.www.kotlin.dao.entity.LoginResultEntity
-import com.www.kotlin.retrofit.LoginRegisterRetrofitService
+import com.www.kotlin.retrofit.service.LoginRegisterRetrofitService
 import com.www.kotlin.retrofit.response.Response
-import org.jetbrains.anko.info
 import javax.inject.Inject
 
 class LoginRegisterViewModel @Inject constructor( loginRegisterService: LoginRegisterRetrofitService) :
@@ -27,6 +26,4 @@ class LoginRegisterViewModel @Inject constructor( loginRegisterService: LoginReg
     fun registerUser(registerName: String, registerPassword: String): LiveData<Resource<Response<LoginResultEntity>>> {
         return loginService.register(registerName,registerPassword,registerPassword)
     }
-
-
 }

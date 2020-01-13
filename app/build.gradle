@@ -85,6 +85,7 @@ dependencies {
     implementation deps.thirdapi.permsn_help
     implementation deps.thirdapi.pic_select
     implementation deps.thirdapi.CymChadRecyclerViewAdapterHelper
+    implementation deps.thirdapi.banner
 
     //test
     testImplementation deps.test.junit
