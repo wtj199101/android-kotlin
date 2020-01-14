@@ -7,6 +7,7 @@ import com.www.kotlin.R
 import dagger.android.support.AndroidSupportInjection
 
 class KnowledgeFragment : BaseFragment(){
+
     override fun getContentView()= R.layout.fragment_knowledge
 
     override fun init(savedInstanceState: Bundle?) {
