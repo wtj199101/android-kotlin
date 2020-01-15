@@ -10,6 +10,7 @@ class HomeViewModel @Inject constructor(homeService: MainRetrofitService) :
     fun getBanners() = homeService.getBanners()
 
     fun getIndexArticles(currPage: Int)=homeService.getIndexArticles(currPage)
+    fun getKnowledgeTree() =homeService.getKnowledgeTree()
 
     private var homeService = homeService
 

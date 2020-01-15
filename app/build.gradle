@@ -41,7 +41,7 @@ dependencies {
     implementation deps.comdeps.kotlinstdlibjdk8
     implementation deps.comdeps.anko
     implementation deps.support.appcompat
-    implementation deps.support.design
+    implementation deps.support.material
     implementation deps.support.constraintlayout
     implementation deps.support.annotations
 

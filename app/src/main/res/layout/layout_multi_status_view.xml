@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.base.kotlin.widget.MultiStatusView
+        android:id="@+id/multi_status_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        app:msv_emptyLayoutId="@layout/msv_layout_empty"
+        app:msv_loadingLayoutId="@layout/msv_layout_loading"
+        app:msv_retryBtnId="@+id/msv_btn_retry"
+        app:msv_retryLayoutId="@layout/msv_layout_retry"/>
+</merge>

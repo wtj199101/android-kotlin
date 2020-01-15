@@ -1,7 +1,6 @@
 package com.www.kotlin.ui.fragments
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -21,6 +20,7 @@ import com.www.kotlin.utils.ImageLoadUtils
 import com.youth.banner.loader.ImageLoader
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_home_article.*
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.startActivity
 import javax.inject.Inject
@@ -35,9 +35,9 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         homeViewModel.getIndexArticles(adapter.currPage)
             .observe(this, object : ApiObserver<PageList<ArticleEntity>>() {
                 override fun onSuccess(response: Response<PageList<ArticleEntity>>?) {
-                    if(response!!.data!=null){
+                    if (response!!.data != null) {
                         val dataList = response.data
-                        adapter.currPage=dataList.curPage
+                        adapter.currPage = dataList.curPage
                         adapter.addData(dataList.data)
                     }
 
@@ -47,47 +47,52 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun init(savedInstanceState: Bundle?) {
         home_recycler.layoutManager = LinearLayoutManager(context)
-         adapter = ArticleQuickAdapter(home_recycler, home_srl)
+        adapter = ArticleQuickAdapter(R.layout.item_home_article)
+        home_recycler.adapter = adapter
+        adapter.setOnItemClickListener { adapter, view, position ->
+            val item = adapter.getItem(position)
+            startActivity(intentFor<ArticleDetailActivity>("item" to item))
+        }
+        //设置view 头部
         addBanner()
         home_srl.post {
             onRefresh()
-        }
-        adapter.setOnItemClickListener { adapter, view, position ->
-                val item = adapter.getItem(position)
-            startActivity(intentFor<ArticleDetailActivity>("item" to item))
         }
         home_recycler.itemAnimator = DefaultItemAnimator()
     }
 
     private fun addBanner() {
-        homeViewModel.getBanners().observe(this,object:ApiObserver<List<BannerEntity>>() {
-                override fun onSuccess(bannerList: Response<List<BannerEntity>>?) {
-                    val bannerData = bannerList!!.data
-                    banner.setImageLoader(object: ImageLoader(){
+        homeViewModel.getBanners().observe(this, object : ApiObserver<List<BannerEntity>>() {
+            override fun onSuccess(bannerList: Response<List<BannerEntity>>?) {
+                val bannerData = bannerList!!.data
+                banner.setImageLoader(object : ImageLoader() {
                     override fun displayImage(
                         context: Context?,
                         path: Any?,
                         imageView: ImageView?
                     ) = ImageLoadUtils.load(context!!, path!!, imageView!!, false, 0)
                 })
-                    banner.setDelayTime(5000)
-                     banner.setOnBannerListener {
-                        val entity = bannerData[it]
-                        startActivity<ArticleDetailActivity>("title" to entity.title,"url" to entity.url)
-                    }
-                    banner.setImages(BannerEntity.toImages(bannerData))
-                    banner.start()
-                    adapter.addHeaderView(banner)
+                banner.setDelayTime(5000)
+                banner.setOnBannerListener {
+                    val entity = bannerData[it]
+                    startActivity<ArticleDetailActivity>(
+                        "title" to entity.title,
+                        "url" to entity.url
+                    )
                 }
+                banner.setImages(BannerEntity.toImages(bannerData))
+                banner.start()
+                adapter.addHeaderView(banner)
             }
+        }
         )
-
     }
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
+
     override fun getContentView() = R.layout.fragment_home
 
 }

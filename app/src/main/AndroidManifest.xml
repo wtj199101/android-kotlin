@@ -36,6 +36,8 @@
         <activity android:name=".ui.activity.AboutUsActivity"/>
         <activity android:name=".ui.activity.CollectionArticleActivity"/>
         <activity android:name=".ui.activity.SettingActivity"/>
+        <activity android:name=".ui.activity.ArticleDetailActivity"/>
+        <activity android:name=".ui.activity.KnowledgeTreeTabActivity"/>
     </application>
 
 </manifest>

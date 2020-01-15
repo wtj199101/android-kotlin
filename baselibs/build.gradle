@@ -35,7 +35,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation deps.support.appcompat
-    implementation deps.support.design
+    implementation deps.support.material
     implementation deps.support.constraintlayout
     implementation deps.support.annotations
 
