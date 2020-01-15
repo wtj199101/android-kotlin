@@ -44,12 +44,9 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                         if(dataList.hasNextStartWithZero()){
                             adapter.currPage++
                         }
-                        home_srl.isRefreshing=false
                     }
-
                 }
             })
-
     }
     override fun init(savedInstanceState: Bundle?) {
         home_recycler.layoutManager = LinearLayoutManager(home_recycler.context)

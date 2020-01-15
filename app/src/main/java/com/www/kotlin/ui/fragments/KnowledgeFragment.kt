@@ -56,9 +56,8 @@ class KnowledgeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                     adapter.addData(response.data)
                 }
             }
-
-            override fun onFailure(code: Int, msg: String?) {
-                super.onFailure(code, msg)
+            override fun onError(code: Int, msg: String?) {
+                super.onError(code, msg)
                 viewHelper.showRetryInList(MultiStatusViewHelper.hasData(adapter.data))
             }
 

@@ -13,7 +13,6 @@ import com.github.leonardoxh.livedatacalladapter.Resource;
  * Desc：
  */
 public abstract class BaseObserver<R> implements Observer<Resource<R>> {
-
     @Override
     public void onChanged(@Nullable Resource<R> response) {
         if (response != null) {
@@ -22,14 +21,14 @@ public abstract class BaseObserver<R> implements Observer<Resource<R>> {
                 callback(data);
             } else {
                 if (response.getError() != null) {
-                    onError(response.getError());
+                    onException(response.getError());
                 }
             }
         }
     }
 
-    public void onError(Throwable throwable) {
-        Log.e("BaseObserver error",throwable.getMessage());
+    public void onException(Throwable throwable) {
+        Log.e("BaseObserver Exception",throwable.getMessage());
     }
     public abstract void callback(R response);
 }

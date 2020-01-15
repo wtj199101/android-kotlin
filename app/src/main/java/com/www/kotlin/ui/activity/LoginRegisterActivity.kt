@@ -164,8 +164,8 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener, AnkoLogger {
 
                     onBackPressed()
                 }
-                override fun onFailure(code: Int, msg: String?) {
-                    super.onFailure(code, msg)
+                override fun onError(code: Int, msg: String?) {
+                    super.onError(code, msg)
                     if (msg != null) {
                         toast(msg)
                     }
@@ -186,8 +186,8 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener, AnkoLogger {
                        appToken=registerName
                        onBackPressed()
                    }
-                   override fun onFailure(code: Int, msg: String?) {
-                       super.onFailure(code, msg)
+                   override fun onError(code: Int, msg: String?) {
+                       super.onError(code, msg)
                        if (msg != null) {
                            toast(msg)
                        }
