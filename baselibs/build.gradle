@@ -45,6 +45,7 @@ dependencies {
     implementation deps.retrofit.livedataAdapter
 
     implementation deps.picture.glide
+    kapt deps.picture.glideCompiler
 
 }
 

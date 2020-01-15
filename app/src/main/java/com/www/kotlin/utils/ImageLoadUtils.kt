@@ -3,9 +3,23 @@ package com.www.kotlin.utils
 import android.content.Context
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.GlideBuilder
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.module.AppGlideModule
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.signature.ObjectKey
 import com.www.kotlin.R
+@GlideModule
+class AppNameGlideModule:AppGlideModule(){
+      override fun applyOptions(context: Context, builder: GlideBuilder) {
+            super.applyOptions(context, builder)
+            builder.apply { RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL).signature(
+                  ObjectKey(System.currentTimeMillis().toShort())
+            ) }
+      }
+}
 
 object ImageLoadUtils{
       private val DEFAULT_ERROR_RES_ID = R.drawable.image_error

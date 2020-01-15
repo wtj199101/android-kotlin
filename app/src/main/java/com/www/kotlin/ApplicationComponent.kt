@@ -13,6 +13,7 @@ import com.www.kotlin.ui.fragments.ProjectFragment
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import dagger.Subcomponent
 import dagger.android.AndroidInjectionModule
 import dagger.android.ContributesAndroidInjector
 import okhttp3.Interceptor
@@ -27,7 +28,7 @@ import javax.inject.Singleton
 /**
  * 全局 component
  */
-@Component(modules = [AndroidInjectionModule::class, ActivityModule::class, ApiModule::class, RetrofitModule::class])
+@Component(modules = [AndroidInjectionModule::class, ActivityModule::class,MainFragmentModule::class, ApiModule::class, RetrofitModule::class])
 @Singleton
 interface ApplicationComponent {
     fun inject(application: App)
@@ -38,7 +39,7 @@ interface ApplicationComponent {
  */
 @Module
 interface ActivityModule{
-    @ContributesAndroidInjector(modules = [MainFragmentModule::class])
+    @ContributesAndroidInjector
     abstract  fun MainActivityInjector(): MainActivity
 
     @ContributesAndroidInjector
@@ -48,8 +49,11 @@ interface ActivityModule{
 interface MainFragmentModule{
     @ContributesAndroidInjector
     abstract fun HomeFragmentInjector(): HomeFragment
+    @ContributesAndroidInjector
     abstract fun KnowledgeFragmentInjector(): KnowledgeFragment
+    @ContributesAndroidInjector
     abstract fun NavigationFragmentInjector(): NavigationFragment
+    @ContributesAndroidInjector
     abstract fun ProjectFragmentInjector(): ProjectFragment
 }
 

@@ -2,6 +2,7 @@ package com.www.kotlin.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,10 +18,11 @@ import com.www.kotlin.ui.activity.ArticleDetailActivity
 import com.www.kotlin.ui.adapters.ArticleQuickAdapter
 import com.www.kotlin.ui.viewmodel.HomeViewModel
 import com.www.kotlin.utils.ImageLoadUtils
+import com.youth.banner.Banner
 import com.youth.banner.loader.ImageLoader
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.item_home_article.*
+import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.startActivity
 import javax.inject.Inject
@@ -39,22 +41,26 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                         val dataList = response.data
                         adapter.currPage = dataList.curPage
                         adapter.addData(dataList.data)
+                        if(dataList.hasNextStartWithZero()){
+                            adapter.currPage++
+                        }
+                        home_srl.isRefreshing=false
                     }
 
                 }
             })
-    }
 
+    }
     override fun init(savedInstanceState: Bundle?) {
-        home_recycler.layoutManager = LinearLayoutManager(context)
+        home_recycler.layoutManager = LinearLayoutManager(home_recycler.context)
         adapter = ArticleQuickAdapter(R.layout.item_home_article)
-        home_recycler.adapter = adapter
+        addBanner()
         adapter.setOnItemClickListener { adapter, view, position ->
             val item = adapter.getItem(position)
             startActivity(intentFor<ArticleDetailActivity>("item" to item))
         }
         //设置view 头部
-        addBanner()
+        home_recycler.adapter = adapter
         home_srl.post {
             onRefresh()
         }
@@ -65,6 +71,8 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         homeViewModel.getBanners().observe(this, object : ApiObserver<List<BannerEntity>>() {
             override fun onSuccess(bannerList: Response<List<BannerEntity>>?) {
                 val bannerData = bannerList!!.data
+                val bannerView = View.inflate(activity, R.layout.layout_banner, null)
+                var banner = bannerView.find<Banner>(R.id.banner)
                 banner.setImageLoader(object : ImageLoader() {
                     override fun displayImage(
                         context: Context?,
@@ -82,7 +90,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 }
                 banner.setImages(BannerEntity.toImages(bannerData))
                 banner.start()
-                adapter.addHeaderView(banner)
+                adapter.setHeaderView(bannerView)
             }
         }
         )

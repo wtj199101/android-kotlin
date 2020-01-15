@@ -30,7 +30,7 @@ def versions=[:]
     versions.androidxEspresso="3.2.0"
 
     versions.okhttp3="4.2.2"
-    versions.glide="4.8.0"
+    versions.glide="4.11.0"
     versions.livedataAdapter="1.1.2"
 
     versions.dagger="2.25.3"
@@ -95,6 +95,7 @@ deps.retrofit=retrofit
 
 def picture=[:]
 picture.glide="com.github.bumptech.glide:glide:$versions.glide"
+picture.glideCompiler="com.github.bumptech.glide:compiler:$versions.glide"
 deps.picture=picture
 
 def room = [:]

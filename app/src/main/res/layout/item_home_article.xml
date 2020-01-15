@@ -4,9 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:background="@drawable/bg_item"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/item_home_article">
-
     <ImageView
         android:id="@+id/iv_icon"
         android:layout_width="@dimen/dp_80"
@@ -25,7 +24,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_title"
         android:ellipsize="end"
-        android:maxLines="1"
+
+        android:singleLine="true"
         android:text="这是标题，如果超出则显示省略号fsdaffsadfsdf"
         android:textColor="@color/primary"
         android:textSize="@dimen/text_18"
@@ -72,7 +72,7 @@
         android:drawablePadding="2dp"
         android:ellipsize="end"
         android:maxWidth="100sp"
-        android:maxLines="1"
+        android:singleLine="true"
         android:text="完整项目完整项目完整项目"
         android:textColor="@color/secondary_text"
         android:textSize="@dimen/text_12"
@@ -103,6 +103,7 @@
         android:text="这是这篇文章的描述，可能还不短，可能有两行，但是最多只显示两行"
         android:textColor="@color/secondary_text"
         android:textSize="@dimen/text_14"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@id/iv_icon"
         app:layout_constraintRight_toRightOf="parent"

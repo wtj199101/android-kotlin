@@ -34,8 +34,8 @@ class KnowledgeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         knowledge_rv.layoutManager = LinearLayoutManager(context)
         adapter = KnowledgeQuickAdapter(R.layout.item_knowledge_tree)
         knowledge_rv.adapter = adapter
-        adapter.setOnItemClickListener { adapter, view, position ->
-            val item: TreeEntity = adapter.getItem(position)
+        adapter.setOnItemClickListener { adapter2, view, position ->
+            val item:  TreeEntity = adapter.getItem(position)!!
             val intent = Intent(context, KnowledgeTreeTabActivity::class.java)
             intent.putExtra("data", item)
             intent.putExtra("position", 0)

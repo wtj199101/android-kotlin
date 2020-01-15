@@ -81,7 +81,10 @@ dependencies {
     implementation deps.thirdapi.shimmer
     implementation deps.thirdapi.weakhandler
     implementation deps.thirdapi.titlebar
+
     implementation deps.picture.glide
+    kapt deps.picture.glideCompiler
+
     implementation deps.thirdapi.permsn_help
     implementation deps.thirdapi.pic_select
     implementation deps.thirdapi.CymChadRecyclerViewAdapterHelper

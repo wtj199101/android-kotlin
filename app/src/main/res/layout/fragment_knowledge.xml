@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/detail_srl"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/detail_srl"
+    android:layout_width="match_parent"
+    android:layout_height="0dp">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/knowledge_rv"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/knowledge_rv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
     <include layout="@layout/layout_multi_status_view" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
