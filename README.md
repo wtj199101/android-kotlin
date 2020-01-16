@@ -3,7 +3,8 @@
 感谢 以下项目
 - **项目 [https://github.com/iceCola7/WanAndroid](https://github.com/iceCola7/WanAndroid) 已经使用该框架**
 - **Kotlin 版 MVP 基础框架：[https://github.com/iceCola7/KotlinMVPSamples](https://github.com/iceCola7/KotlinMVPSamples)**
-- **arvinljw的WanAndroid项目提供很大帮助 [https://github.com/arvinljw/WanAndroid](https://github.com/arvinljw/WanAndroid) **
+- **arvinljw的WanAndroid项目提供很大帮助 [https://github.com/arvinljw/WanAndroid](https://github.com/arvinljw/WanAndroid)**
+- **官方推荐的一些例子 A collection of samples using the [Architecture Components](https://developer.android.com/arch)**
 
 ## 简介
 自己学习android 最新的jetpack 组件 ，包含 navigation,livedata,ktx,lifecycles,room,retrofit，dagger2 等其他组件

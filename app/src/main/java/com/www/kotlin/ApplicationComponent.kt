@@ -1,5 +1,8 @@
 package com.www.kotlin
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.android.example.github.di.ViewModelKey
 import com.github.leonardoxh.livedatacalladapter.LiveDataCallAdapterFactory
 import com.github.leonardoxh.livedatacalladapter.LiveDataResponseBodyConverterFactory
 import com.www.kotlin.retrofit.service.LoginRegisterRetrofitService
@@ -10,12 +13,13 @@ import com.www.kotlin.ui.fragments.HomeFragment
 import com.www.kotlin.ui.fragments.KnowledgeFragment
 import com.www.kotlin.ui.fragments.NavigationFragment
 import com.www.kotlin.ui.fragments.ProjectFragment
-import dagger.Component
-import dagger.Module
-import dagger.Provides
-import dagger.Subcomponent
+import com.www.kotlin.ui.viewmodel.AppViewModeFactory
+import com.www.kotlin.ui.viewmodel.HomeViewModel
+import com.www.kotlin.ui.viewmodel.LoginRegisterViewModel
+import dagger.*
 import dagger.android.AndroidInjectionModule
 import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoMap
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,8 +31,12 @@ import javax.inject.Singleton
 
 /**
  * 全局 component
+ * AndroidInjectionModule dagger2-android module
+ * ActivityModule 管理 activity module
+ * ApiModule 对接口和数据的module
+ * ViewModeModule 全局 viewMode 的module
  */
-@Component(modules = [AndroidInjectionModule::class, ActivityModule::class,MainFragmentModule::class, ApiModule::class, RetrofitModule::class])
+@Component(modules = [AndroidInjectionModule::class,ApiModule::class, MainFragmentModule::class,ViewModeModule::class,ActivityModule::class ])
 @Singleton
 interface ApplicationComponent {
     fun inject(application: App)
@@ -38,49 +46,75 @@ interface ApplicationComponent {
  * activit 和fragment 依赖
  */
 @Module
-interface ActivityModule{
+interface ActivityModule {
     @ContributesAndroidInjector
-    abstract  fun MainActivityInjector(): MainActivity
+    abstract fun MainActivityInjector(): MainActivity
 
     @ContributesAndroidInjector
-    abstract  fun LoginRegisterActivityInjector(): LoginRegisterActivity
+    abstract fun LoginRegisterActivityInjector(): LoginRegisterActivity
 }
+
 @Module
-interface MainFragmentModule{
+interface MainFragmentModule {
     @ContributesAndroidInjector
     abstract fun HomeFragmentInjector(): HomeFragment
+
     @ContributesAndroidInjector
     abstract fun KnowledgeFragmentInjector(): KnowledgeFragment
+
     @ContributesAndroidInjector
     abstract fun NavigationFragmentInjector(): NavigationFragment
+
     @ContributesAndroidInjector
     abstract fun ProjectFragmentInjector(): ProjectFragment
 }
 
 /**
- * Retrofit 或其他依赖
+ * viewMode 依赖
  */
 @Module
-class ApiModule{
+abstract class ViewModeModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel::class)
+    abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginRegisterViewModel::class)
+    abstract fun bindLoginRegisterViewModel(loginRegisterViewModel: LoginRegisterViewModel): ViewModel
+
+    @Binds
+    @Singleton
+    abstract fun bindViewModelFactory(factory:AppViewModeFactory): ViewModelProvider.Factory
+}
+
+
+/**
+ * Retrofit 或其他依赖
+ */
+@Module(includes = [RetrofitProvice::class])
+class ApiModule {
     @Provides
     @Singleton
-    fun provideLoginRegisterService(retrofit:Retrofit): LoginRegisterRetrofitService {
+    fun provideLoginRegisterService(retrofit: Retrofit): LoginRegisterRetrofitService {
         return retrofit.create(LoginRegisterRetrofitService::class.java)
     }
+
     @Provides
     @Singleton
-    fun provideMainRetrofitService(retrofit:Retrofit): MainRetrofitService {
+    fun provideMainRetrofitService(retrofit: Retrofit): MainRetrofitService {
         return retrofit.create(MainRetrofitService::class.java)
     }
 
 }
+
 @Module
-class RetrofitModule{
-    private val baseUrl="https://wanandroid.com/"
+class RetrofitProvice {
+    private val baseUrl = "https://wanandroid.com/"
 
     @Provides
     @Singleton
-    fun provideRetrofit():Retrofit{
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(getHttpClient())
@@ -91,7 +125,7 @@ class RetrofitModule{
     }
 
     private fun getHttpClient(): OkHttpClient {
-        var builder= OkHttpClient.Builder().addInterceptor(getDefaultInterceptor())
+        var builder = OkHttpClient.Builder().addInterceptor(getDefaultInterceptor())
         addHttpConfig(builder)
         return builder.proxy(Proxy.NO_PROXY).build()
     }
@@ -99,8 +133,9 @@ class RetrofitModule{
     private fun addHttpConfig(builder: OkHttpClient.Builder) {
 
     }
+
     private fun getDefaultInterceptor(): Interceptor {
-        return  HttpLoggingInterceptor().apply {
+        return HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BASIC
         }
     }

@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -16,6 +18,7 @@ import com.www.kotlin.retrofit.response.ApiObserver
 import com.www.kotlin.retrofit.response.Response
 import com.www.kotlin.ui.activity.ArticleDetailActivity
 import com.www.kotlin.ui.adapters.ArticleQuickAdapter
+import com.www.kotlin.ui.viewmodel.AppViewModeFactory
 import com.www.kotlin.ui.viewmodel.HomeViewModel
 import com.www.kotlin.utils.ImageLoadUtils
 import com.youth.banner.Banner
@@ -29,9 +32,14 @@ import javax.inject.Inject
 
 class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
-    private lateinit var adapter: ArticleQuickAdapter
     @Inject
-    lateinit var homeViewModel: HomeViewModel
+    lateinit var appViewModeFactory: ViewModelProvider.Factory
+
+   private val homeViewModel: HomeViewModel by viewModels {
+       appViewModeFactory
+   }
+    private lateinit var adapter: ArticleQuickAdapter
+
 
     override fun onRefresh() {
         homeViewModel.getIndexArticles(adapter.currPage)
@@ -45,8 +53,10 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                             adapter.currPage++
                         }
                     }
+
                 }
             })
+        home_srl.isRefreshing=false
     }
     override fun init(savedInstanceState: Bundle?) {
         home_recycler.layoutManager = LinearLayoutManager(home_recycler.context)
@@ -101,4 +111,6 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     override fun getContentView() = R.layout.fragment_home
 
 }
+
+
 

@@ -24,6 +24,7 @@ class AppNameGlideModule:AppGlideModule(){
 object ImageLoadUtils{
       private val DEFAULT_ERROR_RES_ID = R.drawable.image_error
       private val DEFAULT_PLACE_RES_ID = R.drawable.image_place
+
       var isNoImage = false
       fun loadImage(context: Context, url: String, imageView: ImageView, vararg resIds: Int) {
             load(context, url, imageView, false, 0, *resIds)

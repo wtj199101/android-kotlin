@@ -16,18 +16,18 @@ import androidx.navigation.ui.onNavDestinationSelected
 import com.badoo.mobile.util.WeakHandler
 import com.base.kotlin.base.BaseActivity
 import com.base.kotlin.utils.PermissionUtil
-import com.www.kotlin.App
 import com.www.kotlin.R
-import com.www.kotlin.dao.entity.LoginResultEntity
 import com.www.kotlin.utils.Preference
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_main.*
 import net.arvin.selector.SelectorHelper
-import org.jetbrains.anko.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.find
+import org.jetbrains.anko.toast
 
-class MainActivity : BaseActivity(),AnkoLogger {
-
+class MainActivity : BaseActivity(),AnkoLogger{
 
     private  var appToken by Preference(this,"appToken","")
 

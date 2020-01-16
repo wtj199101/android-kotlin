@@ -4,8 +4,10 @@ import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
+import androidx.lifecycle.ViewModelProvider
 import com.base.kotlin.base.BaseActivity
 import com.www.kotlin.R
 import com.www.kotlin.dao.entity.LoginResultEntity
@@ -32,10 +34,12 @@ class LoginRegisterActivity : BaseActivity(), View.OnClickListener, AnkoLogger {
     override fun getContentView() = R.layout.activity_login
 
     private lateinit var animatorOut: AnimatorSet
-    private lateinit var animatorIn: AnimatorSet
 
+    private lateinit var animatorIn: AnimatorSet
     @Inject
-    lateinit var loginRegisterViewModel: LoginRegisterViewModel
+    lateinit var factory: ViewModelProvider.Factory
+
+   private val loginRegisterViewModel: LoginRegisterViewModel by viewModels { factory }
 
     private var login_card: Boolean = true
 
