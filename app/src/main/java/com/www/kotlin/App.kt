@@ -18,7 +18,6 @@ class App :Application(),HasAndroidInjector{
         super.onCreate()
         DaggerApplicationComponent.create().inject(this)
         AppCompatDelegate.setDefaultNightMode(if(isDarkStyle)AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO)
-
     }
 
     companion object {

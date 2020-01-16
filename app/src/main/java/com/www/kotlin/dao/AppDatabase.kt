@@ -22,7 +22,6 @@ abstract class AppDatabase : RoomDatabase() {
                 Instant
                     ?: buildDatabase(context).also { Instant = it }
             }
-
         private fun buildDatabase(context: Context): AppDatabase {
             return Room.databaseBuilder(
                 context.applicationContext,

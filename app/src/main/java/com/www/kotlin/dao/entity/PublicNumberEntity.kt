@@ -27,6 +27,4 @@ data class PublicNumberEntity (
     var isUserControlSetTop: Boolean = false,
     var visible: Int = 0,
     var children: @RawValue List<Any>? = null
-) : Parcelable {
-
-}
+) : Parcelable
