@@ -3,24 +3,20 @@ package com.www.kotlin.ui.adapters
 import android.graphics.Color
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.module.BaseLoadMoreModule
+import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.www.kotlin.R
 import com.www.kotlin.dao.entity.ArticleEntity
 import com.www.kotlin.utils.ImageLoadUtils
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.warn
 
-class ArticleQuickAdapter(@LayoutRes var layoutId: Int) :
-
-    BaseQuickAdapter<ArticleEntity, BaseViewHolder>(layoutId),AnkoLogger {
+class ArticleQuickAdapter constructor(  @LayoutRes private val layoutResId: Int) :
+    BaseQuickAdapter<ArticleEntity, BaseViewHolder>(layoutResId) , LoadMoreModule {
     private var showCollection: Boolean = true
-    var currPage: Int = 0
-
+    var firstPage: Int = 0
+    var currPage: Int=firstPage
 
     override fun convert(helper: BaseViewHolder, item: ArticleEntity?) {
         if (item != null) {
@@ -42,10 +38,9 @@ class ArticleQuickAdapter(@LayoutRes var layoutId: Int) :
                 helper.setGone(R.id.img_collection, false)
             }
             val imgIcon = helper.getView<ImageView>(R.id.iv_icon)
-            warn(item.envelopePic)
-            if(item.envelopePic!=null && item.envelopePic!!.isNotEmpty() ){
+            if (item.envelopePic != null && item.envelopePic!!.isNotEmpty()) {
                 ImageLoadUtils.loadImage(context, item.envelopePic!!, imgIcon)
-            }else{
+            } else {
                 helper.setGone(R.id.iv_icon, true)
             }
         }
@@ -72,8 +67,6 @@ class ArticleQuickAdapter(@LayoutRes var layoutId: Int) :
         )
         return sb
     }
-
-
 }
 
 

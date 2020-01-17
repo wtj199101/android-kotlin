@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.base.kotlin.base.BaseFragment
@@ -18,7 +17,6 @@ import com.www.kotlin.retrofit.response.ApiObserver
 import com.www.kotlin.retrofit.response.Response
 import com.www.kotlin.ui.activity.ArticleDetailActivity
 import com.www.kotlin.ui.adapters.ArticleQuickAdapter
-import com.www.kotlin.ui.viewmodel.AppViewModeFactory
 import com.www.kotlin.ui.viewmodel.HomeViewModel
 import com.www.kotlin.utils.ImageLoadUtils
 import com.youth.banner.Banner
@@ -31,50 +29,49 @@ import org.jetbrains.anko.support.v4.startActivity
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
-
     @Inject
     lateinit var appViewModeFactory: ViewModelProvider.Factory
 
-   private val homeViewModel: HomeViewModel by viewModels {
-       appViewModeFactory
-   }
+    private val homeViewModel: HomeViewModel by viewModels {
+        appViewModeFactory
+    }
     private lateinit var adapter: ArticleQuickAdapter
 
+    override fun init(savedInstanceState: Bundle?) {
+
+        adapter = ArticleQuickAdapter(R.layout.item_home_article)
+        home_recycler.layoutManager = LinearLayoutManager(home_recycler.context)
+        home_recycler.adapter = adapter
+        //设置view 头部
+        initBanner()
+        adapter.setOnItemClickListener { adapter, view, position ->
+            val item = adapter.getItem(position)
+            startActivity(intentFor<ArticleDetailActivity>("item" to item))
+        }
+        home_srl.setOnRefreshListener(this)
+        home_srl.post {
+            onRefresh()
+        }
+
+    }
 
     override fun onRefresh() {
-        homeViewModel.getIndexArticles(adapter.currPage)
+        //下拉刷新
+        //初始化 datas
+        homeViewModel.getIndexArticles(adapter.firstPage)
             .observe(this, object : ApiObserver<PageList<ArticleEntity>>() {
                 override fun onSuccess(response: Response<PageList<ArticleEntity>>?) {
                     if (response!!.data != null) {
                         val dataList = response.data
                         adapter.currPage = dataList.curPage
-                        adapter.addData(dataList.data)
-                        if(dataList.hasNextStartWithZero()){
-                            adapter.currPage++
-                        }
+                        adapter.setNewData(dataList.data)
                     }
-
+                    home_srl.isRefreshing=false
                 }
             })
-        home_srl.isRefreshing=false
-    }
-    override fun init(savedInstanceState: Bundle?) {
-        home_recycler.layoutManager = LinearLayoutManager(home_recycler.context)
-        adapter = ArticleQuickAdapter(R.layout.item_home_article)
-        addBanner()
-        adapter.setOnItemClickListener { adapter, view, position ->
-            val item = adapter.getItem(position)
-            startActivity(intentFor<ArticleDetailActivity>("item" to item))
-        }
-        //设置view 头部
-        home_recycler.adapter = adapter
-        home_srl.post {
-            onRefresh()
-        }
-        home_recycler.itemAnimator = DefaultItemAnimator()
     }
 
-    private fun addBanner() {
+    private fun initBanner() {
         homeViewModel.getBanners().observe(this, object : ApiObserver<List<BannerEntity>>() {
             override fun onSuccess(bannerList: Response<List<BannerEntity>>?) {
                 val bannerData = bannerList!!.data
