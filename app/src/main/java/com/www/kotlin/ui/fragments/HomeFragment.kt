@@ -39,7 +39,7 @@ class HomeFragment : BaseFragment() {
     private lateinit var adapter: ArticleQuickAdapter
 
     override fun init(savedInstanceState: Bundle?) {
-        adapter = ArticleQuickAdapter(home_srl,home_recycler,R.layout.item_home_article)
+        adapter = ArticleQuickAdapter(context!!,home_srl,R.layout.item_home_article)
         //设置view 头部
         initBanner()
         loadItmeList(adapter.firstPage)

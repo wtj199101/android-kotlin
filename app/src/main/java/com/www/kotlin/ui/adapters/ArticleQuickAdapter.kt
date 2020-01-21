@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.view.View
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.www.kotlin.R
@@ -13,9 +14,15 @@ import com.www.kotlin.utils.ImageLoadUtils
 class ArticleQuickAdapter constructor(content:Context, srl:SwipeRefreshLayout, rvItemId:Int) :
     BaseRecyclerAdapter<ArticleEntity, BaseViewHolder>(content,rvItemId) {
 
+
+
+
     private var srl=srl
     override fun onRefresh() {
         this.setNewData(itemList)
+        srl.post {
+            onRefresh()
+        }
     }
     private var showCollection: Boolean = true
     var firstPage: Int = 0

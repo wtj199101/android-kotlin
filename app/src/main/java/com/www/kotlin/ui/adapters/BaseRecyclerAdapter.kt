@@ -16,7 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 abstract class BaseRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val context: Context, @LayoutRes var rvItemId: Int) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(),
-    SwipeRefreshLayout.OnRefreshListener {
+    SwipeRefreshLayout.OnRefreshListener ,RecyclerExtras{
     companion object {
         const val HEADER_VIEW = 1
         const val FOOTER_VIEW = 2
@@ -39,6 +39,9 @@ abstract class BaseRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val context:
     private var hasEmptyLayout: Boolean = false
 
     private var emptyLayoutCount: Int = 1
+
+
+
     /**
      *   获得列表项的个数
      */
@@ -82,6 +85,7 @@ abstract class BaseRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val context:
         return baseViewHolder
     }
 
+
     //绑定视图持有者中的各个控件对象，需要子类重写
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == HEADER_VIEW) {
@@ -91,6 +95,13 @@ abstract class BaseRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val context:
             return
         }
         onConvert(holder as BaseViewHolder, itemList[position])
+        bindViewHolderEvent(holder.itemView,position)
+    }
+
+    private fun bindViewHolderEvent(view: View, position: Int) {
+        view.setOnClickListener {
+            onItemClick(it,position)
+        }
     }
 
 
@@ -103,7 +114,6 @@ abstract class BaseRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val context:
      */
     fun setNewData(newData: MutableList<T>) {
         itemList = newData
-        notifyDataSetChanged()
     }
 
     /**
@@ -113,6 +123,33 @@ abstract class BaseRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(val context:
         itemList.addAll(addDataList)
         notifyItemRangeInserted(itemCount - addDataList.size, addDataList.size)
     }
+
+    fun setHeaderView(view: View,index: Int = -1, orientation: Int = LinearLayout.VERTICAL) {
+        if(headerLayout==null){
+            headerLayout=LinearLayout(view.context)
+            headerLayout.orientation = orientation
+            headerLayout.layoutParams = if (orientation == LinearLayout.VERTICAL) {
+                RecyclerView.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            } else {
+                RecyclerView.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+            }
+        }
+        val index = headerLayout.childCount
+        headerLayout.addView(view,index)
+        notifyItemInserted(0)
+
+    }
+
+}
+
+ interface RecyclerExtras {
+      fun onItemClick(view: View, position: Int)
 }
 
 open class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
