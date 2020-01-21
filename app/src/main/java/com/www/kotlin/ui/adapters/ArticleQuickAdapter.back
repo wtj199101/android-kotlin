@@ -1,19 +1,27 @@
 package com.www.kotlin.ui.adapters
 
-import android.content.Context
 import android.graphics.Color
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.widget.ImageView
+import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.BaseListenerImp
+import com.chad.library.adapter.base.module.LoadMoreModule
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.www.kotlin.R
 import com.www.kotlin.dao.entity.ArticleEntity
 import com.www.kotlin.utils.ImageLoadUtils
+import kotlinx.android.synthetic.main.fragment_home.*
 
-class ArticleQuickAdapter constructor(content:Context, srl:SwipeRefreshLayout, rvItemId:Int) :
-    BaseRecyclerAdapter<ArticleEntity, BaseViewHolder>(content,rvItemId) {
+class ArticleQuickAdapter constructor(private  val srf:SwipeRefreshLayout,private  val rv: RecyclerView, @LayoutRes private val layoutResId: Int) :
+    BaseQuickAdapter<ArticleEntity, BaseViewHolder>(layoutResId) , LoadMoreModule,
+    SwipeRefreshLayout.OnRefreshListener {
 
-    private var srl=srl
     override fun onRefresh() {
         this.setNewData(itemList)
     }
@@ -21,7 +29,18 @@ class ArticleQuickAdapter constructor(content:Context, srl:SwipeRefreshLayout, r
     var firstPage: Int = 0
     var currPage: Int=firstPage
 
-    override fun onConvert(helper:BaseViewHolder,item: ArticleEntity) {
+    //初始化数据
+    var itemList:MutableList<ArticleEntity>?=null
+
+    init{
+        rv.layoutManager = LinearLayoutManager(rv.context)
+        rv.adapter = this
+        rv.itemAnimator=(DefaultItemAnimator())
+        srf.setOnRefreshListener(this)
+    }
+
+    override fun convert(helper: BaseViewHolder, item: ArticleEntity?) {
+        if (item != null) {
             helper.setText(R.id.tv_title, deal(item.title!!))
             helper.setText(R.id.tv_time, item.niceDate)
             helper.setText(R.id.tv_desc, item.desc)
@@ -45,8 +64,8 @@ class ArticleQuickAdapter constructor(content:Context, srl:SwipeRefreshLayout, r
             } else {
                 helper.setGone(R.id.iv_icon, true)
             }
+        }
     }
-
 
 
     private fun deal(title: String): SpannableString {
@@ -70,7 +89,11 @@ class ArticleQuickAdapter constructor(content:Context, srl:SwipeRefreshLayout, r
         return sb
     }
 
-
+    fun autoRefresh() {
+        srf.post {
+            onRefresh()
+        }
+    }
 }
 
 
